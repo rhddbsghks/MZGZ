@@ -6,8 +6,7 @@ import {
 } from "../web3Config";
 
 import { useEffect, useState } from "react";
-import { Grid, Flex, Text, Button } from "@chakra-ui/react";
-import MyAnimalCard from "../components/MyAnimalCard";
+import { Grid } from "@chakra-ui/react";
 import SaleAnimalCard from "../components/SaleAnimalCard";
 
 const SaleAnimal = ({ account }) => {

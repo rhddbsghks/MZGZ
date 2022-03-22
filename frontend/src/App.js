@@ -1,9 +1,5 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import Web3 from "web3";
-import { Button } from "@chakra-ui/react";
 
 import Main from "./routes/main";
 import MyAnimal from "./routes/my-animal";

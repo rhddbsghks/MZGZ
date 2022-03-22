@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { AspectRatio, Image } from "@chakra-ui/react";
+import React from "react";
+import { Image } from "@chakra-ui/react";
 
 const AnimalCard = ({ animalType }) => {
   return (

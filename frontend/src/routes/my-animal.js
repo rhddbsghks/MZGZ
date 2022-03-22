@@ -2,7 +2,6 @@ import React from "react";
 import {
   mintAnimalTokenContract,
   saleAnimalTokenAddress,
-  saleAnimalTokenContract,
 } from "../web3Config";
 import { useEffect, useState } from "react";
 import { Grid, Flex, Text, Button } from "@chakra-ui/react";

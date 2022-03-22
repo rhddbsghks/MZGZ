@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {
-  Grid,
-  Flex,
   Text,
   Button,
   Box,
-  InputRightAddon,
-  Input,
-  InputGroup,
 } from "@chakra-ui/react";
 import AnimalCard from "./AnimalCard";
 import {
