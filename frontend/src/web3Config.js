@@ -1,7 +1,7 @@
 import { AbiItem } from "web3-utils";
 import Web3 from "web3";
 
-const mintAnimalTokenAbi = [
+const mintProductAbi = [
   {
     inputs: [],
     stateMutability: "nonpayable",
@@ -58,50 +58,6 @@ const mintAnimalTokenAbi = [
     type: "event",
   },
   {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "Transfer",
-    type: "event",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "animalTypes",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
     inputs: [
       {
         internalType: "address",
@@ -122,138 +78,29 @@ const mintAnimalTokenAbi = [
   {
     inputs: [
       {
-        internalType: "address",
-        name: "owner",
-        type: "address",
+        internalType: "string",
+        name: "brand",
+        type: "string",
       },
-    ],
-    name: "balanceOf",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_animalTokenOwner",
-        type: "address",
-      },
-    ],
-    name: "getAnimalTokens",
-    outputs: [
-      {
-        components: [
-          {
-            internalType: "uint256",
-            name: "animalTokenId",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "animalType",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "animalPrice",
-            type: "uint256",
-          },
-        ],
-        internalType: "struct MintAnimalToken.AnimalTokenData[]",
-        name: "",
-        type: "tuple[]",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "getApproved",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "owner",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "operator",
-        type: "address",
-      },
-    ],
-    name: "isApprovedForAll",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "mintAnimalToken",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "name",
-    outputs: [
       {
         internalType: "string",
-        name: "",
+        name: "name",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "productType",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "serialNum",
         type: "string",
       },
     ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "ownerOf",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
+    name: "mintProduct",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -308,19 +155,6 @@ const mintAnimalTokenAbi = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "saleAnimalToken",
-    outputs: [
-      {
-        internalType: "contract SaleAnimalToken",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
     inputs: [
       {
         internalType: "address",
@@ -339,16 +173,304 @@ const mintAnimalTokenAbi = [
     type: "function",
   },
   {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "Transfer",
+    type: "event",
+  },
+  {
     inputs: [
       {
         internalType: "address",
-        name: "_saleAnimalToken",
+        name: "from",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "transferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "owner",
         type: "address",
       },
     ],
-    name: "setSaleAnimalToken",
-    outputs: [],
-    stateMutability: "nonpayable",
+    name: "balanceOf",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "getApproved",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "productId",
+        type: "uint256",
+      },
+    ],
+    name: "getProduct",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "uint256",
+            name: "productId",
+            type: "uint256",
+          },
+          {
+            internalType: "string",
+            name: "brand",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "name",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "price",
+            type: "uint256",
+          },
+          {
+            internalType: "string",
+            name: "productType",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "serialNum",
+            type: "string",
+          },
+        ],
+        internalType: "struct MintProduct.ProductData",
+        name: "",
+        type: "tuple",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_productOwner",
+        type: "address",
+      },
+    ],
+    name: "getProducts",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "uint256",
+            name: "productId",
+            type: "uint256",
+          },
+          {
+            internalType: "string",
+            name: "brand",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "name",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "price",
+            type: "uint256",
+          },
+          {
+            internalType: "string",
+            name: "productType",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "serialNum",
+            type: "string",
+          },
+        ],
+        internalType: "struct MintProduct.ProductData[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "operator",
+        type: "address",
+      },
+    ],
+    name: "isApprovedForAll",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "name",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "ownerOf",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    name: "products",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "productId",
+        type: "uint256",
+      },
+      {
+        internalType: "string",
+        name: "brand",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "name",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "price",
+        type: "uint256",
+      },
+      {
+        internalType: "string",
+        name: "productType",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "serialNum",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "saleProduct",
+    outputs: [
+      {
+        internalType: "contract SaleProduct",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -458,36 +580,75 @@ const mintAnimalTokenAbi = [
     stateMutability: "view",
     type: "function",
   },
+];
+const saleProductAbi = [
   {
     inputs: [
       {
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
         internalType: "uint256",
-        name: "tokenId",
+        name: "_animalTokenId",
         type: "uint256",
       },
     ],
-    name: "transferFrom",
+    name: "purchaseAnimalToken",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_productId",
+        type: "uint256",
+      },
+    ],
+    name: "purchaseProduct",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_animalTokenId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_price",
+        type: "uint256",
+      },
+    ],
+    name: "setForSaleAnimalToken",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
-];
-const saleAnimalTokenAbi = [
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_productId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_price",
+        type: "uint256",
+      },
+    ],
+    name: "setForSaleProduct",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
   {
     inputs: [
       {
         internalType: "address",
-        name: "_mintAnimalTokenAddress",
+        name: "_mintProductAddress",
         type: "address",
       },
     ],
@@ -534,7 +695,7 @@ const saleAnimalTokenAbi = [
   },
   {
     inputs: [],
-    name: "getOnsSaleAnimalTokenArrayLength",
+    name: "getOnSaleProductArrayLength",
     outputs: [
       {
         internalType: "uint256",
@@ -547,10 +708,42 @@ const saleAnimalTokenAbi = [
   },
   {
     inputs: [],
-    name: "mintAnimalTokenAddress",
+    name: "getOnsSaleAnimalTokenArrayLength",
     outputs: [
       {
-        internalType: "contract MintAnimalToken",
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_productId",
+        type: "uint256",
+      },
+    ],
+    name: "getProductPrice",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "mintProductContract",
+    outputs: [
+      {
+        internalType: "contract MintProduct",
         name: "",
         type: "address",
       },
@@ -581,51 +774,55 @@ const saleAnimalTokenAbi = [
     inputs: [
       {
         internalType: "uint256",
-        name: "_animalTokenId",
+        name: "",
         type: "uint256",
       },
     ],
-    name: "purchaseAnimalToken",
-    outputs: [],
-    stateMutability: "payable",
+    name: "onSaleProductArray",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
   },
   {
     inputs: [
       {
         internalType: "uint256",
-        name: "_animalTokenId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_price",
+        name: "",
         type: "uint256",
       },
     ],
-    name: "setForSaleAnimalToken",
-    outputs: [],
-    stateMutability: "nonpayable",
+    name: "productPrices",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
   },
 ];
 
-// const mintAnimalTokenAddress = "0xA32Ef6a43883A069e49D8634fF258976Ad71D65b";
-const mintAnimalTokenAddress = "0xA040D0C083Fe4F81bE75b160B2dfD8056Af16f31";
+// private 네트워크 테스트시 각자 주소 로 변경
+const mintProductAddress = "0x556d1dBA6c88eA6136aD79d472582bAE26A4FFe3";
 
-// export const saleAnimalTokenAddress =
-//   "0xe7Cf43Dc0B8d4058fa7dF45C9f71Bc4E679697F2";
-export const saleAnimalTokenAddress =
-  "0x18b900f14022319373a9704888D90ed51d3eb73e";
+export const saleProductAddress = "0xD8A3aBbAd33468CC90b02504bA27c917e74C356b";
 
 export const web3 = new Web3(window.ethereum);
 
-export const mintAnimalTokenContract = new web3.eth.Contract(
-  mintAnimalTokenAbi,
-  mintAnimalTokenAddress
+export const mintProductContract = new web3.eth.Contract(
+  mintProductAbi,
+  mintProductAddress
 );
 
-export const saleAnimalTokenContract = new web3.eth.Contract(
-  saleAnimalTokenAbi,
-  saleAnimalTokenAddress
+export const saleProductContract = new web3.eth.Contract(
+  saleProductAbi,
+  saleProductAddress
 );

@@ -4,10 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Web3 from "web3";
 import { Button } from "@chakra-ui/react";
-
+import { mintProductContract, saleProductAddress } from "./web3Config";
 import Main from "./routes/main";
-import MyAnimal from "./routes/my-animal";
-import SaleAnimal from "./routes/sale-animal";
+import MyProduct from "./routes/my-product";
+import SaleProduct from "./routes/sale-product";
 import Layout from "./components/Layout";
 import { useEffect, useState } from "react";
 
@@ -30,9 +30,22 @@ function App() {
     }
   };
 
+  const activateApprove = async () => {
+    try {
+      if (!account) return;
+
+      mintProductContract.methods
+        .setApprovalForAll(saleProductAddress, true)
+        .send({ from: account });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getAccount();
-  }, []);
+    activateApprove();
+  }, [account]);
 
   useEffect(() => console.log(account), [account]);
   return (
@@ -42,12 +55,12 @@ function App() {
           <Routes>
             <Route path="/" element={<Main account={account} />}></Route>
             <Route
-              path="my-animal"
-              element={<MyAnimal account={account} />}
+              path="my-product"
+              element={<MyProduct account={account} />}
             ></Route>
             <Route
-              path="sale-animal"
-              element={<SaleAnimal account={account} />}
+              path="sale-product"
+              element={<SaleProduct account={account} />}
             ></Route>
           </Routes>
         </Layout>

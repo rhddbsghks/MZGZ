@@ -11,17 +11,17 @@ const Layout = ({ children }) => {
         </Box>
         <Link to="/">
           <Button size="sm" colorScheme="red">
-            Main
+            상품 등록
           </Button>
         </Link>
-        <Link to="/my-animal">
+        <Link to="/my-product">
           <Button size="sm" colorScheme="red">
-            MyAnimal
+            내 상품
           </Button>
         </Link>
-        <Link to="/sale-animal">
+        <Link to="/sale-product">
           <Button size="sm" colorScheme="red">
-            Sale Animal
+            판매 목록
           </Button>
         </Link>
       </Flex>
