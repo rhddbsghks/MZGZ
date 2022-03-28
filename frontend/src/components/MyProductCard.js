@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Flex, Text, Button, Box, Image, Modal, ModalOverlay, useDisclosure, ModalFooter, ModalContent, ModalCloseButton, ModalBody, ModalHeader, Heading } from "@chakra-ui/react";
+import { Flex, Text, Button, Box, Image, Modal, ModalOverlay, useDisclosure, ModalFooter, ModalContent, ModalCloseButton, ModalBody, ModalHeader, Heading, Spacer } from "@chakra-ui/react";
 import { saleProductContract, web3 } from "../web3Config";
 import ModalContentBody from "./ModalContentBody";
 
@@ -11,7 +11,6 @@ const MyProductCard = ({
   serialNum,
   account,
 }) => {
-  const WEI = 1000000000000000000;
   const { isOpen, onOpen, onClose} = useDisclosure();
   const onClickSell = async () => {
     try {
@@ -51,6 +50,7 @@ const MyProductCard = ({
 
           <Modal isOpen={isOpen} onClose={onClose}
             motionPreset='slideInBottom'
+            size='4xl'
           >
             <ModalOverlay />
             <ModalContent>
@@ -65,11 +65,12 @@ const MyProductCard = ({
                   account={account}
                 />
               </ModalBody>
-              
+              <hr />
               <ModalFooter>
                 <Heading fontSize='lg'>
                   제품을 판매하시겠습니까?
                 </Heading>
+                <Spacer />
                 <Button
                 size="lg" colorScheme='facebook' mt="auto"
                 onClick={onClickSell}
