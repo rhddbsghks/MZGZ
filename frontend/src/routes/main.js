@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -7,16 +7,48 @@ import {
   FormControl,
   FormLabel,
   Select,
+  Image,
+  Container,
+  Stack
 } from "@chakra-ui/react";
 import { mintProductContract } from "../web3Config";
 
 const Main = ({ account }) => {
+  const [file, setFile] = useState('');
+  const [previewURL, setPreviewURL] = useState('');
+  const [preview,setPreview] = useState(null);
+
+  const productImage = useRef();
   const productBrand = useRef();
   const productName = useRef();
   const productType = useRef();
   const productSerial = useRef();
 
+  
+  useEffect(() => {
+    if (file !== '') {
+      setPreview(<Image src={previewURL} boxSize='sm' objectFit='cover' m='auto' />);
+    }
+    return () => {
+      
+    }
+  }, [previewURL])
+  
+  const handleFileOnChange = (event) => {//파일 불러오기
+    event.preventDefault();
+    let file = event.target.files[0];
+    let reader = new FileReader();
+
+    reader.onloadend = (e) => {
+      setFile(file);
+      setPreviewURL(reader.result);
+    }
+    if(file)
+      reader.readAsDataURL(file);
+  }
+  
   const onClickMint = async () => {
+    
     console.log(productBrand.current.value);
     console.log(productType.current.value);
     console.log(productSerial.current.value);
@@ -25,6 +57,7 @@ const Main = ({ account }) => {
 
       const response = await mintProductContract.methods
         .mintProduct(
+          productImage.current.value,
           productBrand.current.value,
           productName.current.value,
           productType.current.value,
@@ -34,7 +67,6 @@ const Main = ({ account }) => {
 
       console.log(response);
       alert("등록이 완료되었습니다.");
-      // response.events.returnValues.tokenId
     } catch (error) {
       console.log(error);
     }
@@ -49,11 +81,17 @@ const Main = ({ account }) => {
       flexDirection="column"
     >
       <Box>
-        {/* {newAnimalType ? (
-          <AnimalCard animalType={newAnimalType} />
-        ) : (
-          <span>lets go</span>
-        )} */}
+        <Stack>
+          {preview}
+        </Stack>
+        <FormControl isRequired>
+          <FormLabel htmlFor="brand-new">상품 이미지</FormLabel>
+          <Input
+          id="file" type="file" ref={productImage}
+          accept='image/jpg,impge/png,image/jpeg,image/gif'
+          onChange={handleFileOnChange}
+          />
+        </FormControl>
         <FormControl isRequired>
           <FormLabel htmlFor="brand-new">브랜드 이름</FormLabel>
           <Input id="brand-new" type="text" ref={productBrand} />
@@ -69,6 +107,7 @@ const Main = ({ account }) => {
             <option>하의</option>
             <option>신발</option>
             <option>악세사리</option>
+            <option>기타</option>
           </Select>
         </FormControl>
         <FormControl isRequired>

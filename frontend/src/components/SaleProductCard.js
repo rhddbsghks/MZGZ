@@ -13,13 +13,11 @@ const SaleProductCard = ({
   getOnSaleProducts,
 }) => {
   const [isBuyable, setIsBuyable] = useState(true);
-
   const getProductOwner = async () => {
     try {
       const response = await mintProductContract.methods
         .ownerOf(productId)
         .call();
-
       setIsBuyable(
         response.toLocaleLowerCase() === account.toLocaleLowerCase()
       );
@@ -54,7 +52,7 @@ const SaleProductCard = ({
           w={150}
           h={150}
           src={`img/1.png`}
-          alt="AnimalCard"
+          alt="ProductCard"
           m="auto"
         ></Image>
 
