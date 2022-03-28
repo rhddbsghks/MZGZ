@@ -4,15 +4,21 @@ pragma solidity ^0.8.0;
 
 import "MintProduct.sol";
 
-contract SaleProduct {
+contract SaleProduct2 {
     MintProduct public mintProductContract;
 
     constructor(address _mintProductAddress) {
         mintProductContract = MintProduct(_mintProductAddress);
     }
 
+    struct Deal {
+        uint256 dealPrice;
+        uint256 dealTime;
+    }
+
     mapping(uint256 => uint256) public animalTokenPrices;
     mapping(uint256 => uint256) public productPrices;
+    mapping(uint256 => Deal[]) public productDealHistories;
 
     uint256[] public onSaleAnimalTokenArray;
     uint256[] public onSaleProductArray;
@@ -107,6 +113,18 @@ contract SaleProduct {
                 onSaleProductArray.pop();
             }
         }
+        Deal memory deal;
+        deal.dealPrice = price;
+        deal.dealTime = block.timestamp;
+        productDealHistories[_productId].push(deal);
+    }
+
+    function getDealHistories(uint256 _productId)
+        public
+        view
+        returns (Deal[] memory)
+    {
+        return productDealHistories[_productId];
     }
 
     function getOnSaleProductArrayLength() public view returns (uint256) {
