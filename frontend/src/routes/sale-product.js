@@ -26,9 +26,6 @@ const SaleProduct = ({ account }) => {
           .getProduct(productId)
           .call();
 
-        console.log("제품");
-        console.log(product);
-
         const productPrice = await saleProductContract.methods
           .getProductPrice(productId)
           .call();

@@ -43,7 +43,6 @@ const Main = ({ account }) => {
   return (
     <Flex
       w="full"
-      h="100vh"
       justifyContent="center"
       alignItems="center"
       flexDirection="column"

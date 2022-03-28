@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Flex, Text, Button, Box, Image } from "@chakra-ui/react";
 import { saleProductContract, web3 } from "../web3Config";
 
@@ -10,7 +10,7 @@ const MyProductCard = ({
   serialNum,
   account,
 }) => {
-  const WEI = 1000000000000000000;
+  const [onSale, setOnSale] = useState(false);
 
   const onClickSell = async () => {
     try {
@@ -28,10 +28,21 @@ const MyProductCard = ({
       console.error(error);
     }
   };
+
+  const checkOnSale = async () => {
+    const price = await saleProductContract.methods
+      .getProductPrice(productTokenId)
+      .call();
+
+    if (price > 0) setOnSale(true);
+  };
+
   useEffect(() => {
     console.log(productTokenId);
     console.log(brand);
     console.log(serialNum);
+
+    checkOnSale();
   }, []);
   return (
     <Box textAlign="center" w={250} borderWidth="1px" p="5">
@@ -56,16 +67,29 @@ const MyProductCard = ({
           >
             상세정보
           </Button>
-          <Button
-            size="md"
-            colorScheme="teal"
-            mt="auto"
-            width="80px"
-            height="30px"
-            onClick={onClickSell}
-          >
-            판매
-          </Button>
+          {onSale ? (
+            <Button
+              size="md"
+              colorScheme="teal"
+              mt="auto"
+              width="80px"
+              height="30px"
+              disabled={true}
+            >
+              판매 중
+            </Button>
+          ) : (
+            <Button
+              size="md"
+              colorScheme="teal"
+              mt="auto"
+              width="80px"
+              height="30px"
+              onClick={onClickSell}
+            >
+              판매
+            </Button>
+          )}
         </Flex>
       </>
     </Box>
