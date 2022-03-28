@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { Flex, Text, Button, Box, Image } from "@chakra-ui/react";
+import { Flex, Text, Button, Box, Image, Modal, ModalOverlay, useDisclosure, ModalFooter, ModalContent, ModalCloseButton, ModalBody, ModalHeader, Heading, Spacer } from "@chakra-ui/react";
 import { saleProductContract, web3 } from "../web3Config";
+import ModalContentBody from "./ModalContentBody";
 
 const MyProductCard = ({
   productTokenId,
@@ -10,8 +11,7 @@ const MyProductCard = ({
   serialNum,
   account,
 }) => {
-  const WEI = 1000000000000000000;
-
+  const { isOpen, onOpen, onClose} = useDisclosure();
   const onClickSell = async () => {
     try {
       if (!account) return;
@@ -43,29 +43,43 @@ const MyProductCard = ({
           alt="AnimalCard"
           m="auto"
         ></Image>
+        <Text fontSize='sm' color='gray'>{brand}</Text>
+        <Text fontSize='lg' fontWeight='extrabold'>{name}</Text>
+        <Flex justify="center" m="auto" mt="5" width="80%">
+          <Button onClick={onOpen} colorScheme='whatsapp'>상세정보</Button>
 
-        <Text>[{brand}]</Text>
-        <Text>{name}</Text>
-        <Flex justify="space-between" m="auto" mt="5" width="80%">
-          <Button
-            size="md"
-            colorScheme="linkedin"
-            mt="auto"
-            width="80px"
-            height="30px"
+          <Modal isOpen={isOpen} onClose={onClose}
+            motionPreset='slideInBottom'
+            size='4xl'
           >
-            상세정보
-          </Button>
-          <Button
-            size="md"
-            colorScheme="teal"
-            mt="auto"
-            width="80px"
-            height="30px"
-            onClick={onClickSell}
-          >
-            판매
-          </Button>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>제품 정보</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <ModalContentBody
+                  brand={brand}
+                  name={name}
+                  productType={productType}
+                  serialNum={serialNum}
+                  account={account}
+                />
+              </ModalBody>
+              <hr />
+              <ModalFooter>
+                <Heading fontSize='lg'>
+                  제품을 판매하시겠습니까?
+                </Heading>
+                <Spacer />
+                <Button
+                size="lg" colorScheme='facebook' mt="auto"
+                onClick={onClickSell}
+                >
+                  판매
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
         </Flex>
       </>
     </Box>
