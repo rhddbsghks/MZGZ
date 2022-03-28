@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 
 import "MintProduct.sol";
 
-contract SaleProduct2 {
+contract SaleProduct {
     MintProduct public mintProductContract;
 
     constructor(address _mintProductAddress) {
