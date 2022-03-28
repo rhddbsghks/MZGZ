@@ -55,6 +55,37 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productId",
+						"type": "uint256"
+					}
+				],
+				"name": "getDealHistories",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "dealPrice",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "dealTime",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct SaleProduct.Deal[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "getOnSaleProductArrayLength",
 				"outputs": [
@@ -144,6 +175,35 @@
 					{
 						"internalType": "uint256",
 						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "productDealHistories",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "dealPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "dealTime",
 						"type": "uint256"
 					}
 				],
@@ -348,19 +408,19 @@
 			]
 		},
 		"MintProduct.sol": {
-			"keccak256": "0x6fca81494ddecf09e3aada01eb4b675e3b9c6a91b3bb0e14d7bc7193e434062c",
+			"keccak256": "0xf7bd8530fe5c9fa2ef4c6902342bc136942b474f7ebed847efdeb7f484bbe15c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8801ef61030e245dd49fba33b43f38cb8a01527631f5af23337f681b3e684353",
-				"dweb:/ipfs/QmYdwPZhyyai9H2nGMwnTgyC2TxSWZ5hYVcLq6PS1HAsTZ"
+				"bzz-raw://e30d684dfdbc39dafcf5dfb6d7fa4410b45f9f8f601b7b4cd6554f8d905c44e9",
+				"dweb:/ipfs/QmTjSZmvpfoMtN5YPfKSS9iu48cHx3pUdbSaapZNbSWQsz"
 			]
 		},
 		"SaleProduct.sol": {
-			"keccak256": "0x352bb39329c4ab6d0a2c8aff42c1236cd61e66a6b72ab7830e06fcf1d59bbb8a",
+			"keccak256": "0xc07d9100c11747752ad51c85ef053e8e46405233f6ed4be9049197e88d7b3bbd",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f6455ed16be55da98f4937c5e6335da5233c040c973937fe9974badfe50a6446",
-				"dweb:/ipfs/QmYb5UZA9A8fwvDRD8beguxCw71aoQjiNnES7fkunw6nmW"
+				"bzz-raw://dd142813ed720149ebca173eea18a9af952c0cdb1b0a6a73bba8c468ee277ff1",
+				"dweb:/ipfs/QmbV6LKjMtDFSR1oxq8SQhYMZVXbrAhwWo1GcAENMdZHWJ"
 			]
 		}
 	},

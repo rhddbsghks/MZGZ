@@ -1,11 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, Button, Box, Image } from "@chakra-ui/react";
+import {
+  Flex,
+  Text,
+  Button,
+  Box,
+  Image,
+  Modal,
+  ModalOverlay,
+  useDisclosure,
+  ModalFooter,
+  ModalContent,
+  ModalCloseButton,
+  ModalBody,
+  ModalHeader,
+  Heading,
+  Spacer,
+} from "@chakra-ui/react";
 import { mintProductContract, saleProductContract, web3 } from "../web3Config";
+import ModalContentBody from "./ModalContentBody";
 
 const SaleProductCard = ({
   productId,
   brand,
-  type,
+  productType,
   name,
   serialNum,
   productPrice,
@@ -13,6 +30,8 @@ const SaleProductCard = ({
   getOnSaleProducts,
 }) => {
   const [isBuyable, setIsBuyable] = useState(true);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const getProductOwner = async () => {
     try {
       const response = await mintProductContract.methods
@@ -56,25 +75,35 @@ const SaleProductCard = ({
           m="auto"
         ></Image>
 
-        <Text>[{brand}]</Text>
-        <Text>{name}</Text>
+        <Text fontSize="sm" color="gray">
+          {brand}
+        </Text>
+        <Text fontSize="lg" fontWeight="extrabold">
+          {name}
+        </Text>
         <Text d="inline-block">{web3.utils.fromWei(productPrice)} ETH</Text>
-        <Flex justify="space-between" m="auto" mt="5" width="80%">
+
+        <Flex
+          justify="center"
+          m="auto"
+          mt="5"
+          width="80%"
+          flexDirection="column"
+        >
           <Button
-            size="md"
-            colorScheme="linkedin"
-            mt="auto"
-            width="80px"
-            height="30px"
+            onClick={onOpen}
+            colorScheme="whatsapp"
+            width="80%"
+            m="auto"
+            mb="3"
           >
             상세정보
           </Button>
+
           <Button
-            size="sm"
             colorScheme="purple"
-            mt="auto"
-            width="80px"
-            height="30px"
+            width="80%"
+            m="auto"
             disabled={isBuyable}
             onClick={onClickBuy}
           >
@@ -82,6 +111,28 @@ const SaleProductCard = ({
           </Button>
         </Flex>
       </>
+
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        motionPreset="slideInBottom"
+        size="4xl"
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>제품 정보</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <ModalContentBody
+              brand={brand}
+              name={name}
+              productType={productType}
+              serialNum={serialNum}
+              account={account}
+            />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </Box>
   );
 };

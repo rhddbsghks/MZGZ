@@ -1,7 +1,7 @@
 import React from "react";
 import { mintProductContract } from "../web3Config";
 import { useEffect, useState } from "react";
-import { Grid } from "@chakra-ui/react";
+import { Grid, Box } from "@chakra-ui/react";
 import MyProductCard from "../components/MyProductCard";
 
 const MyProduct = ({ account }) => {
@@ -47,23 +47,25 @@ const MyProduct = ({ account }) => {
 
   return (
     <>
-      <Grid templateColumns="repeat(4, 1fr)" gap={8} mt="4">
-        {productArray.length > 0
-          ? productArray.map((v, i) => {
-              return (
-                <MyProductCard
-                  key={i}
-                  productTokenId={v.productId}
-                  brand={v.brand}
-                  name={v.name}
-                  productType={v.productType}
-                  serialNum={v.serialNum}
-                  account={account}
-                />
-              );
-            })
-          : "보유한 상품이 없습니다."}
-      </Grid>
+      {productArray && productArray.length > 0 ? (
+        <Grid templateColumns="repeat(4, 1fr)" gap={8} mt="4">
+          {productArray.map((v, i) => {
+            return (
+              <MyProductCard
+                key={i}
+                productTokenId={v.productId}
+                brand={v.brand}
+                name={v.name}
+                productType={v.productType}
+                serialNum={v.serialNum}
+                account={account}
+              />
+            );
+          })}
+        </Grid>
+      ) : (
+        <Box>보유한 상품이 없습니다.</Box>
+      )}
     </>
   );
 };

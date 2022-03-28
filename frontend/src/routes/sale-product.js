@@ -3,7 +3,7 @@ import React from "react";
 import { mintProductContract, saleProductContract } from "../web3Config";
 
 import { useEffect, useState } from "react";
-import { Grid } from "@chakra-ui/react";
+import { Grid, Box } from "@chakra-ui/react";
 import SaleProductCard from "../components/SaleProductCard";
 
 const SaleProduct = ({ account }) => {
@@ -54,24 +54,29 @@ const SaleProduct = ({ account }) => {
   }, []);
 
   return (
-    <Grid mt="4" templateColumns="repeat(4,1fr)" gap="8">
-      {saleProductArray &&
-        saleProductArray.map((v, i) => {
-          return (
-            <SaleProductCard
-              key={i}
-              productId={v.productId}
-              brand={v.brand}
-              type={v.type}
-              name={v.name}
-              serialNum={v.serialNum}
-              productPrice={v.productPrice}
-              account={account}
-              getOnSaleProducts={getOnSaleProducts}
-            />
-          );
-        })}
-    </Grid>
+    <>
+      {saleProductArray && saleProductArray.length > 0 ? (
+        <Grid mt="4" templateColumns="repeat(4,1fr)" gap="8">
+          {saleProductArray.map((v, i) => {
+            return (
+              <SaleProductCard
+                key={i}
+                productId={v.productId}
+                brand={v.brand}
+                productType={v.type}
+                name={v.name}
+                serialNum={v.serialNum}
+                productPrice={v.productPrice}
+                account={account}
+                getOnSaleProducts={getOnSaleProducts}
+              />
+            );
+          })}
+        </Grid>
+      ) : (
+        <Box>판매중인 상품이 없습니다.</Box>
+      )}
+    </>
   );
 };
 

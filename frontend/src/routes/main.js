@@ -9,14 +9,14 @@ import {
   Select,
   Image,
   Container,
-  Stack
+  Stack,
 } from "@chakra-ui/react";
 import { mintProductContract } from "../web3Config";
 
 const Main = ({ account }) => {
-  const [file, setFile] = useState('');
-  const [previewURL, setPreviewURL] = useState('');
-  const [preview,setPreview] = useState(null);
+  const [file, setFile] = useState("");
+  const [previewURL, setPreviewURL] = useState("");
+  const [preview, setPreview] = useState(null);
 
   const productImage = useRef();
   const productBrand = useRef();
@@ -24,17 +24,17 @@ const Main = ({ account }) => {
   const productType = useRef();
   const productSerial = useRef();
 
-  
   useEffect(() => {
-    if (file !== '') {
-      setPreview(<Image src={previewURL} boxSize='sm' objectFit='cover' m='auto' />);
+    if (file !== "") {
+      setPreview(
+        <Image src={previewURL} boxSize="sm" objectFit="cover" m="auto" />
+      );
     }
-    return () => {
-      
-    }
-  }, [previewURL])
-  
-  const handleFileOnChange = (event) => {//파일 불러오기
+    return () => {};
+  }, [previewURL]);
+
+  const handleFileOnChange = (event) => {
+    //파일 불러오기
     event.preventDefault();
     let file = event.target.files[0];
     let reader = new FileReader();
@@ -42,13 +42,11 @@ const Main = ({ account }) => {
     reader.onloadend = (e) => {
       setFile(file);
       setPreviewURL(reader.result);
-    }
-    if(file)
-      reader.readAsDataURL(file);
-  }
-  
+    };
+    if (file) reader.readAsDataURL(file);
+  };
+
   const onClickMint = async () => {
-    
     console.log(productBrand.current.value);
     console.log(productType.current.value);
     console.log(productSerial.current.value);
@@ -57,7 +55,6 @@ const Main = ({ account }) => {
 
       const response = await mintProductContract.methods
         .mintProduct(
-          productImage.current.value,
           productBrand.current.value,
           productName.current.value,
           productType.current.value,
@@ -75,21 +72,20 @@ const Main = ({ account }) => {
   return (
     <Flex
       w="full"
-      h="100vh"
       justifyContent="center"
       alignItems="center"
       flexDirection="column"
     >
       <Box>
-        <Stack>
-          {preview}
-        </Stack>
+        <Stack>{preview}</Stack>
         <FormControl isRequired>
           <FormLabel htmlFor="brand-new">상품 이미지</FormLabel>
           <Input
-          id="file" type="file" ref={productImage}
-          accept='image/jpg,impge/png,image/jpeg,image/gif'
-          onChange={handleFileOnChange}
+            id="file"
+            type="file"
+            ref={productImage}
+            accept="image/jpg,impge/png,image/jpeg,image/gif"
+            onChange={handleFileOnChange}
           />
         </FormControl>
         <FormControl isRequired>
