@@ -61,7 +61,7 @@ const MyProductCard = ({
       .call();
 
     console.log(name + "의 거래 내역");
-
+    setDealHistories(histories);
     histories.map((v, i) => {
       console.log("거래 " + i);
       console.log("가격: " + web3.utils.fromWei(v.dealPrice) + "ETH");
@@ -141,6 +141,7 @@ const MyProductCard = ({
                   productType={productType}
                   serialNum={serialNum}
                   account={account}
+                  saleHistory={dealHistories}
                 />
               </ModalBody>
               <hr />
