@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { web3 } from "../web3Config";
-import Moment from "moment";
-import { Text, Image, Heading, Flex, Square, Box, Tab } from "@chakra-ui/react";
+import { Text, Image, Heading, Flex, Square, Box } from "@chakra-ui/react";
 
 
 const ModalContentBody = ({
