@@ -769,9 +769,9 @@ const saleProductAbi = [
 	}
 ]
 // private 네트워크 테스트시 각자 주소 로 변경
-const mintProductAddress = "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab";
+const mintProductAddress = "0x41E1aA1f52a60d854c59AeeBF7CA01C665129f18";
 
-export const saleProductAddress = "0x5b1869D9A4C187F2EAa108f3062412ecf0526b24";
+export const saleProductAddress = "0x665cd101d9bB678a99CB172d1cDDf3e8b4eF17e2";
 
 export const web3 = new Web3(window.ethereum);
 
