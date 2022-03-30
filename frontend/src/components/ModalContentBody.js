@@ -1,6 +1,8 @@
 import React from "react";
 import { web3 } from "../web3Config";
 import { Text, Image, Heading, Flex, Square, Box } from "@chakra-ui/react";
+import axios from 'axios';
+import { useEffect, useState } from "react";
 
 
 const ModalContentBody = ({
@@ -10,12 +12,23 @@ const ModalContentBody = ({
   account,
   saleHistory
 }) => {
+  const [picture,setPicture] = useState([]);
+
+  useEffect(() => {
+
+    axios.get("http://localhost:8080/user/picture",{params:{
+      id: productTokenId
+    }}).then(res=>{
+      setPicture(res.data.data.picture_url)
+      console.log(res.data.data.picture_url)
+    })
+  }, []);
   return (
     <>
       <Flex m='auto'>
         <Square size='300px'>
           <Image
-            src={`img/1.jpg`}
+            src={picture}
           />
         </Square>
         <Box flex='1' m='auto' overflow='auto' p='auto'>

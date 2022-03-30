@@ -6,6 +6,7 @@ import MyProductCard from "../components/MyProductCard";
 
 const MyProduct = ({ account }) => {
   const [productArray, setProductArray] = useState([]);
+  const [tokenArray, setTokenArray] = useState([]);
 
   const getProducts = async () => {
     try {
@@ -21,8 +22,9 @@ const MyProduct = ({ account }) => {
         .getProducts(account)
         .call();
 
+
       response.map((v) => {
-        console.log(v);
+        // console.log(v);
         tempProductArray.push({
           productId: v.productId,
           brand: v.brand,
