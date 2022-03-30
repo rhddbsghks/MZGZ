@@ -18,6 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { mintProductContract, saleProductContract, web3 } from "../web3Config";
 import ModalContentBody from "./ModalContentBody";
+import axios from 'axios';
 
 const SaleProductCard = ({
   productId,
@@ -31,6 +32,7 @@ const SaleProductCard = ({
 }) => {
   const [isBuyable, setIsBuyable] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [picture,setPicture] = useState([]);
 
   const getProductOwner = async () => {
     try {
@@ -62,6 +64,14 @@ const SaleProductCard = ({
   };
 
   useEffect(() => {
+
+    axios.get("http://localhost:8080/user/picture",{params:{
+      id: productId
+    }}).then(res=>{
+      setPicture(res.data.data.picture_url)
+      console.log(res.data.data.picture_url)
+    })
+
     getProductOwner();
   }, []);
   return (
@@ -70,7 +80,7 @@ const SaleProductCard = ({
         <Image
           w={150}
           h={150}
-          src={`img/1.png`}
+          src={picture}
           alt="ProductCard"
           m="auto"
         ></Image>
@@ -124,6 +134,7 @@ const SaleProductCard = ({
           <ModalCloseButton />
           <ModalBody>
             <ModalContentBody
+              productTokenId={productId}
               brand={brand}
               name={name}
               productType={productType}

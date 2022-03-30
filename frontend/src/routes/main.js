@@ -12,6 +12,17 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { mintProductContract } from "../web3Config";
+import axios from 'axios';
+
+import qs from "qs";
+axios.default.paramsSerializer = params => {
+  return qs.stringify(params);
+}
+
+const api = axios.create({
+  baseURL: `/user/picture`
+})
+
 
 const Main = ({ account }) => {
   const [file, setFile] = useState("");
@@ -39,6 +50,8 @@ const Main = ({ account }) => {
     let file = event.target.files[0];
     let reader = new FileReader();
 
+
+
     reader.onloadend = (e) => {
       setFile(file);
       setPreviewURL(reader.result);
@@ -47,6 +60,21 @@ const Main = ({ account }) => {
   };
 
   const onClickMint = async () => {
+    // const formData = new FormData();
+    // formData.append("images", productImage);
+    // formData.append("id", 55);
+
+    // axios({
+    //   method: "post",
+    //   url: "http://localhost:8080/user/picture",
+    //   data: formData,
+    //   headers: { "Content-Type": "multipart/form-data"}
+    // }).then(res=>{
+    //   console.log(res)
+    // });
+
+
+
     console.log(productBrand.current.value);
     console.log(productType.current.value);
     console.log(productSerial.current.value);
@@ -62,7 +90,23 @@ const Main = ({ account }) => {
         )
         .send({ from: account });
 
-      console.log(response);
+      console.log("---------------");
+
+      // post
+
+      const formData = new FormData();
+      formData.append("images", file);
+      formData.append("id", response.events.Transfer.returnValues.tokenId);
+  
+      axios({
+        method: "post",
+        url: "http://localhost:8080/user/picture",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data"}
+      }).then(res=>{
+        console.log(res)
+      });
+
       alert("등록이 완료되었습니다.");
     } catch (error) {
       console.log(error);

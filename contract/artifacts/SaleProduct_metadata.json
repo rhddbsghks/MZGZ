@@ -20,44 +20,6 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "animalTokenPrices",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_animalTokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "getAnimalTokenPrice",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
 						"name": "_productId",
 						"type": "uint256"
 					}
@@ -99,19 +61,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "getOnsSaleAnimalTokenArrayLength",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -138,25 +87,6 @@
 						"internalType": "contract MintProduct",
 						"name": "",
 						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "onSaleAnimalTokenArray",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -233,19 +163,6 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_animalTokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "purchaseAnimalToken",
-				"outputs": [],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
 						"name": "_productId",
 						"type": "uint256"
 					}
@@ -253,24 +170,6 @@
 				"name": "purchaseProduct",
 				"outputs": [],
 				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_animalTokenId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_price",
-						"type": "uint256"
-					}
-				],
-				"name": "setForSaleAnimalToken",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -408,19 +307,19 @@
 			]
 		},
 		"MintProduct.sol": {
-			"keccak256": "0xf7bd8530fe5c9fa2ef4c6902342bc136942b474f7ebed847efdeb7f484bbe15c",
+			"keccak256": "0x6fca81494ddecf09e3aada01eb4b675e3b9c6a91b3bb0e14d7bc7193e434062c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e30d684dfdbc39dafcf5dfb6d7fa4410b45f9f8f601b7b4cd6554f8d905c44e9",
-				"dweb:/ipfs/QmTjSZmvpfoMtN5YPfKSS9iu48cHx3pUdbSaapZNbSWQsz"
+				"bzz-raw://8801ef61030e245dd49fba33b43f38cb8a01527631f5af23337f681b3e684353",
+				"dweb:/ipfs/QmYdwPZhyyai9H2nGMwnTgyC2TxSWZ5hYVcLq6PS1HAsTZ"
 			]
 		},
 		"SaleProduct.sol": {
-			"keccak256": "0xc07d9100c11747752ad51c85ef053e8e46405233f6ed4be9049197e88d7b3bbd",
+			"keccak256": "0x7185955acf0e1f607d2e7fe43f5afba67d59d810941473a68564ef6eeac321d8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://dd142813ed720149ebca173eea18a9af952c0cdb1b0a6a73bba8c468ee277ff1",
-				"dweb:/ipfs/QmbV6LKjMtDFSR1oxq8SQhYMZVXbrAhwWo1GcAENMdZHWJ"
+				"bzz-raw://010c72659bb22559815bc5ff58081b2cab9b68579dcd7204a0d2d3fea4fcbdf0",
+				"dweb:/ipfs/QmdcAdKePW92Z7Lz7haNjfWWbnNGLpK1zs8VAedeEiwWvF"
 			]
 		}
 	},
