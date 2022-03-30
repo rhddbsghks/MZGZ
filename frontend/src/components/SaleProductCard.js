@@ -75,7 +75,10 @@ const SaleProductCard = ({
     getProductOwner();
   }, []);
   return (
-    <Box textAlign="center" w={250} borderWidth="1px" p="5">
+    <Box
+    textAlign="center" borderWidth="1px"
+    boxShadow='dark-lg'w={250} p={5}
+    >
       <>
         <Image
           w={150}

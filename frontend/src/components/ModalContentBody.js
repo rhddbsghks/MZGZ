@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 
 const ModalContentBody = ({
+  productTokenId,
   brand,
   name,
   serialNum,
