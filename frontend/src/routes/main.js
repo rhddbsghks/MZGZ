@@ -123,7 +123,7 @@ const Main = ({ account }) => {
             id="file"
             type="file"
             ref={productImage}
-            accept="image/jpg,impge/png,image/jpeg,image/gif"
+            accept="image/jpg,image/png,image/jpeg,image/gif"
             onChange={handleFileOnChange}
           />
         </FormControl>
