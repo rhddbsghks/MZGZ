@@ -1,44 +1,41 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Stack, Flex, Text, Box, Button } from "@chakra-ui/react";
+import { Stack, Flex, Text, GridItem, Grid } from "@chakra-ui/react";
 
 const Layout = ({ children }) => {
   return (
     <Stack h="100vh" color="Background">
-      <Flex bg="unset" p={4} justifyContent="space-around" alignItems="center">
-        <Box>
+      <Grid templateColumns='repeat(12, 1fr)' bg="unset" p={4} justifyContent="space-around" alignItems="center">
+        <GridItem colSpan={1} justifySelf='center'>
           <Text fontWeight="bold">MZGZ</Text>
-        </Box>
-        <Link to="/">
-          <Button
-          size="sm" colorScheme="unset"
-          textColor="black" fontWeight='bold' fontSize='large'
+        </GridItem>
+        <GridItem colSpan={8} />
+        <GridItem colSpan={1} justifySelf='center'>
+          <Link to="/" colorScheme="unset"
+            textColor="black" fontWeight='bold' fontSize='large'
           >
-            상품 등록
-          </Button>
-        </Link>
-        <Link to="/my-product">
-          <Button
-          size="sm" colorScheme="unset"
+            상품 등록zz
+          </Link>
+        </GridItem>
+        <GridItem colSpan={1} justifySelf='center'>
+          <Link to="/my-product" size="sm" colorScheme="unset"
           textColor="black" fontWeight='bold' fontSize='large'
           >
             내 상품
-          </Button>
-        </Link>
-        <Link to="/sale-product">
-          <Button
+          </Link>
+        </GridItem>
+        <GridItem colSpan={1} justifySelf='center'>
+          <Link to="/sale-product"
           size="sm" colorScheme="unset"
           textColor="black" fontWeight='bold' fontSize='large'
           >
             판매 목록
-          </Button>
-        </Link>
-      </Flex>
+          </Link>
+        </GridItem>
+      </Grid>
       <Flex
-        direction="column"
-        h="full"
-        justifyContent="center"
-        alignItems="center"
+        direction="column" h="full"
+        justifyContent="center" alignItems="center"
       >
         {children}
       </Flex>

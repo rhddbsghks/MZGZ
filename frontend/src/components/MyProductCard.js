@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { saleProductContract, web3 } from "../web3Config";
 import ModalContentBody from "./ModalContentBody";
-import axios from 'axios';
+import axios from "axios";
 
 const MyProductCard = ({
   productTokenId,
@@ -31,8 +31,7 @@ const MyProductCard = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [onSale, setOnSale] = useState(false);
   const [dealHistories, setDealHistories] = useState([]);
-  const [picture,setPicture] = useState([]);
-
+  const [picture, setPicture] = useState([]);
   const onClickSell = async () => {
     try {
       if (!account) return;
@@ -62,42 +61,29 @@ const MyProductCard = ({
       .getDealHistories(productTokenId)
       .call();
 
-    console.log(name + "의 거래 내역");
     setDealHistories(histories);
-    histories.map((v, i) => {
-      console.log("거래 " + i);
-      console.log("가격: " + web3.utils.fromWei(v.dealPrice) + "ETH");
-      console.log("일자: " + v.dealTime);
-      console.log("");
-    });
   };
 
   useEffect(() => {
-
-    axios.get("/user/picture",{params:{
-      id: productTokenId
-    }}).then(res=>{
-      setPicture(res.data.data.picture_url)
-      console.log(res.data.data.picture_url)
-    })
+    axios
+      .get("/user/picture", {
+        params: {
+          id: productTokenId,
+        },
+      })
+      .then((res) => {
+        setPicture(res.data.data.picture_url);
+        console.log(res.data.data.picture_url);
+      });
 
     console.log(productTokenId);
     checkOnSale();
     getDealHistories();
   }, []);
   return (
-    <Box
-    textAlign="center" borderWidth="1px" 
-    boxShadow='dark-lg' w={250} p="5"
-    >
+    <Box textAlign="center" borderWidth="1px" boxShadow="dark-lg" w={250} p="5">
       <>
-        <Image
-          w={150}
-          h={150}
-          src={picture}
-          alt="AnimalCard"
-          m="auto"
-        ></Image>
+        <Image w={150} h={150} src={picture} alt="AnimalCard" m="auto" />
         <Text fontSize="sm" color="gray">
           {brand}
         </Text>
@@ -106,10 +92,10 @@ const MyProductCard = ({
         </Text>
         <Flex
           justify="center"
+          flexDirection="column"
           m="auto"
           mt="5"
           width="80%"
-          flexDirection="column"
         >
           <Button
             onClick={onOpen}
