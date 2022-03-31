@@ -17,7 +17,7 @@ const ModalContentBody = ({
 
   useEffect(() => {
 
-    axios.get("http://localhost:8080/user/picture",{params:{
+    axios.get("/user/picture",{params:{
       id: productTokenId
     }}).then(res=>{
       setPicture(res.data.data.picture_url)
@@ -40,7 +40,7 @@ const ModalContentBody = ({
           <Text fontSize='lg'><strong>시리얼번호: </strong> {serialNum}</Text>
           <br/>
           {
-            saleHistory.length > 0 ?
+            saleHistory && saleHistory.length > 0 ?
               <><Text fontSize='lg' marginBottom='2'><strong>총 {saleHistory.length}건의 거래 내역이 있습니다.</strong></Text><Box>
               {saleHistory.map((v, _) => {
                 var time = new Date( Date.parse( new Date( v.dealTime * 1000 ).toUTCString() ) );

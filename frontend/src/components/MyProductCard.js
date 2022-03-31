@@ -74,7 +74,7 @@ const MyProductCard = ({
 
   useEffect(() => {
 
-    axios.get("http://localhost:8080/user/picture",{params:{
+    axios.get("/user/picture",{params:{
       id: productTokenId
     }}).then(res=>{
       setPicture(res.data.data.picture_url)
