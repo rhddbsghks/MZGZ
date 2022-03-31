@@ -2,7 +2,7 @@
   "name": "nft-front",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://j6a507.p.ssafy.io:8080/",
+  "proxy": "http://j6a507.p.ssafy.io:8080",
   "dependencies": {
     "@chakra-ui/react": "^1.8.6",
     "@emotion/react": "^11.8.1",
