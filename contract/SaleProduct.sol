@@ -27,10 +27,10 @@ contract SaleProduct {
         require(productOwner == msg.sender, "Caller is not owner");
 
         require(_price > 0, "No zero price");
-        require(
-            mintProductContract.isApprovedForAll(productOwner, address(this)),
-            "owner did not approve token"
-        );
+        // require(
+        //     mintProductContract.isApprovedForAll(productOwner, address(this)),
+        //     "owner did not approve token"
+        // );
 
         productPrices[_productId] = _price;
         onSaleProductArray.push(_productId);

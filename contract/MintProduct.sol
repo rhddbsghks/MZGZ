@@ -4,12 +4,8 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
-import "SaleProduct.sol";
-
 contract MintProduct is ERC721Enumerable {
     constructor() ERC721("h662Animals", "HAS") {}
-
-    SaleProduct public saleProduct;
 
     mapping(uint256 => ProductData) public products;
 
