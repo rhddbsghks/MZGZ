@@ -21,6 +21,7 @@ import ModalContentBody from "./ModalContentBody";
 import axios from "axios";
 
 const SaleProductCard = ({
+  productTokenId,
   productId,
   brand,
   productType,
@@ -32,6 +33,7 @@ const SaleProductCard = ({
 }) => {
   const [isBuyable, setIsBuyable] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [dealHistories, setDealHistories] = useState([]);
   const [picture, setPicture] = useState([]);
 
   const getProductOwner = async () => {
@@ -46,6 +48,15 @@ const SaleProductCard = ({
       console.error(error);
     }
   };
+
+  const getDealHistories = async () => {
+    const histories = await saleProductContract.methods
+      .getDealHistories(productTokenId)
+      .call();
+
+    setDealHistories(histories);
+  };
+
 
   const onClickBuy = async () => {
     try {
@@ -74,7 +85,7 @@ const SaleProductCard = ({
         setPicture(res.data.data.picture_url);
         console.log(res.data.data.picture_url);
       });
-
+    getDealHistories();
     getProductOwner();
   }, []);
   return (
@@ -137,6 +148,7 @@ const SaleProductCard = ({
               productType={productType}
               serialNum={serialNum}
               account={account}
+              saleHistory={dealHistories}
             />
           </ModalBody>
         </ModalContent>
