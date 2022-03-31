@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { saleProductContract, web3 } from "../web3Config";
 import ModalContentBody from "./ModalContentBody";
-import axios from 'axios';
+import axios from "axios";
 
 const MyProductCard = ({
   productTokenId,
@@ -31,7 +31,7 @@ const MyProductCard = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [onSale, setOnSale] = useState(false);
   const [dealHistories, setDealHistories] = useState([]);
-  const [picture,setPicture] = useState([]);
+  const [picture, setPicture] = useState([]);
   const onClickSell = async () => {
     try {
       if (!account) return;
@@ -65,28 +65,25 @@ const MyProductCard = ({
   };
 
   useEffect(() => {
-
-    axios.get("http://localhost:8080/user/picture",{params:{
-      id: productTokenId
-    }}).then(res=>{
-      setPicture(res.data.data.picture_url)
-      console.log(res.data.data.picture_url)
-    })
+    axios
+      .get("/user/picture", {
+        params: {
+          id: productTokenId,
+        },
+      })
+      .then((res) => {
+        setPicture(res.data.data.picture_url);
+        console.log(res.data.data.picture_url);
+      });
 
     console.log(productTokenId);
     checkOnSale();
     getDealHistories();
   }, []);
   return (
-    <Box
-    textAlign="center" borderWidth="1px" 
-    boxShadow='dark-lg' w={250} p="5"
-    >
+    <Box textAlign="center" borderWidth="1px" boxShadow="dark-lg" w={250} p="5">
       <>
-        <Image
-          w={150} h={150} src={picture}
-          alt="AnimalCard" m="auto"
-        />
+        <Image w={150} h={150} src={picture} alt="AnimalCard" m="auto" />
         <Text fontSize="sm" color="gray">
           {brand}
         </Text>
@@ -94,20 +91,23 @@ const MyProductCard = ({
           {name}
         </Text>
         <Flex
-          justify="center" flexDirection="column"
-          m="auto" mt="5" width="80%"
+          justify="center"
+          flexDirection="column"
+          m="auto"
+          mt="5"
+          width="80%"
         >
           <Button
-            onClick={onOpen} colorScheme="whatsapp"
-            width="80%" m="auto"mb="3"
+            onClick={onOpen}
+            colorScheme="whatsapp"
+            width="80%"
+            m="auto"
+            mb="3"
           >
             상세정보
           </Button>
           {onSale ? (
-            <Button
-            colorScheme="facebook" width="80%"
-            m="auto" disabled={true}
-            >
+            <Button colorScheme="facebook" width="80%" m="auto" disabled={true}>
               판매 중
             </Button>
           ) : (
@@ -122,7 +122,8 @@ const MyProductCard = ({
           )}
 
           <Modal
-            isOpen={isOpen} onClose={onClose}
+            isOpen={isOpen}
+            onClose={onClose}
             motionPreset="slideInBottom"
             size="4xl"
           >

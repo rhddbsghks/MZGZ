@@ -22,7 +22,6 @@ const MyProduct = ({ account }) => {
         .getProducts(account)
         .call();
 
-
       response.map((v) => {
         // console.log(v);
         tempProductArray.push({

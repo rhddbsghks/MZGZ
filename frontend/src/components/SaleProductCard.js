@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { mintProductContract, saleProductContract, web3 } from "../web3Config";
 import ModalContentBody from "./ModalContentBody";
-import axios from 'axios';
+import axios from "axios";
 
 const SaleProductCard = ({
   productId,
@@ -32,7 +32,7 @@ const SaleProductCard = ({
 }) => {
   const [isBuyable, setIsBuyable] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [picture,setPicture] = useState([]);
+  const [picture, setPicture] = useState([]);
 
   const getProductOwner = async () => {
     try {
@@ -64,29 +64,23 @@ const SaleProductCard = ({
   };
 
   useEffect(() => {
-
-    axios.get("http://localhost:8080/user/picture",{params:{
-      id: productId
-    }}).then(res=>{
-      setPicture(res.data.data.picture_url)
-      console.log(res.data.data.picture_url)
-    })
+    axios
+      .get("/user/picture", {
+        params: {
+          id: productId,
+        },
+      })
+      .then((res) => {
+        setPicture(res.data.data.picture_url);
+        console.log(res.data.data.picture_url);
+      });
 
     getProductOwner();
   }, []);
   return (
-    <Box
-    textAlign="center" borderWidth="1px"
-    boxShadow='dark-lg'w={250} p={5}
-    >
+    <Box textAlign="center" borderWidth="1px" boxShadow="dark-lg" w={250} p={5}>
       <>
-        <Image
-          w={150}
-          h={150}
-          src={picture}
-          alt="ProductCard"
-          m="auto"
-        ></Image>
+        <Image w={150} h={150} src={picture} alt="ProductCard" m="auto"></Image>
 
         <Text fontSize="sm" color="gray">
           {brand}
