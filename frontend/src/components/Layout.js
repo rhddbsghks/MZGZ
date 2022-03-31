@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
           <Link to="/" colorScheme="unset"
             textColor="black" fontWeight='bold' fontSize='large'
           >
-            상품 등록zz
+            상품 등록-test
           </Link>
         </GridItem>
         <GridItem colSpan={1} justifySelf='center'>
