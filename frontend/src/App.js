@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [account, setAccount] = useState("");
-
+  console.log(window.ethereum);
   const getAccount = async () => {
     try {
       if (window.ethereum) {

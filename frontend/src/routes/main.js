@@ -8,7 +8,6 @@ import {
   FormLabel,
   Select,
   Image,
-  Container,
   Stack,
 } from "@chakra-ui/react";
 import { mintProductContract } from "../web3Config";
@@ -108,6 +107,7 @@ const Main = ({ account }) => {
       });
 
       alert("등록이 완료되었습니다.");
+      window.location.reload(true);
     } catch (error) {
       console.log(error);
     }
