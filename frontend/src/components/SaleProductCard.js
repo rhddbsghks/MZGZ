@@ -57,7 +57,6 @@ const SaleProductCard = ({
     setDealHistories(histories);
   };
 
-
   const onClickBuy = async () => {
     try {
       if (!account) return;
@@ -75,6 +74,7 @@ const SaleProductCard = ({
   };
 
   useEffect(() => {
+    if (!productTokenId) return;
     axios
       .get("/user/picture", {
         params: {
@@ -87,7 +87,7 @@ const SaleProductCard = ({
       });
     getDealHistories();
     getProductOwner();
-  }, []);
+  }, [productTokenId]);
   return (
     <Box textAlign="center" borderWidth="1px" boxShadow="dark-lg" w={250} p={5}>
       <>
