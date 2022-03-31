@@ -61,7 +61,7 @@ const SaleProduct = ({ account }) => {
             return (
               <SaleProductCard
                 key={i}
-                productId={v.productId}
+                productTokenId={v.productId}
                 brand={v.brand}
                 productType={v.type}
                 name={v.name}

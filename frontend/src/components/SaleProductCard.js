@@ -50,6 +50,7 @@ const SaleProductCard = ({
   };
 
   const getDealHistories = async () => {
+    console.log("히스토리");
     const histories = await saleProductContract.methods
       .getDealHistories(productTokenId)
       .call();
