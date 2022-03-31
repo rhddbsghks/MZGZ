@@ -41,6 +41,7 @@ public class UserController {
 
     @GetMapping("/picture")
     public ApiMessage<UserApiResponse> getPicture(@RequestParam("id") String id){
+        System.out.println("id = " + id);
         Optional<User> byTokenId = userRepository.findByTokenId(id);
 
         User user = byTokenId.orElseThrow(RuntimeException::new);
