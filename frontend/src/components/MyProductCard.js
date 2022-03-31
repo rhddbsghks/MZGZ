@@ -65,6 +65,8 @@ const MyProductCard = ({
   };
 
   useEffect(() => {
+    if (!productTokenId) return;
+
     axios
       .get("/user/picture", {
         params: {
@@ -79,7 +81,7 @@ const MyProductCard = ({
     console.log(productTokenId);
     checkOnSale();
     getDealHistories();
-  }, []);
+  }, [productTokenId]);
   return (
     <Box textAlign="center" borderWidth="1px" boxShadow="dark-lg" w={250} p="5">
       <>
