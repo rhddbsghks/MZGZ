@@ -94,7 +94,7 @@ const Main = ({ account }) => {
 
       axios({
         method: "post",
-        url: "/user/picture",
+        url: "http://j6a507.p.ssafy.io:8080/user/picture",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       }).then((res) => {
