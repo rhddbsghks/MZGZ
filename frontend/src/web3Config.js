@@ -586,19 +586,6 @@ const saleProductAbi = [
     inputs: [
       {
         internalType: "uint256",
-        name: "_animalTokenId",
-        type: "uint256",
-      },
-    ],
-    name: "purchaseAnimalToken",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
         name: "_productId",
         type: "uint256",
       },
@@ -606,24 +593,6 @@ const saleProductAbi = [
     name: "purchaseProduct",
     outputs: [],
     stateMutability: "payable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_animalTokenId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_price",
-        type: "uint256",
-      },
-    ],
-    name: "setForSaleAnimalToken",
-    outputs: [],
-    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -654,44 +623,6 @@ const saleProductAbi = [
     ],
     stateMutability: "nonpayable",
     type: "constructor",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "animalTokenPrices",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_animalTokenId",
-        type: "uint256",
-      },
-    ],
-    name: "getAnimalTokenPrice",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
   },
   {
     inputs: [
@@ -738,19 +669,6 @@ const saleProductAbi = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "getOnsSaleAnimalTokenArrayLength",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
     inputs: [
       {
         internalType: "uint256",
@@ -777,25 +695,6 @@ const saleProductAbi = [
         internalType: "contract MintProduct",
         name: "",
         type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "onSaleAnimalTokenArray",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
       },
     ],
     stateMutability: "view",
@@ -869,8 +768,8 @@ const saleProductAbi = [
     type: "function",
   },
 ];
-
 // private 네트워크 테스트시 각자 주소 로 변경
+
 // const mintProductAddress = "0x5DD089108Ec1a2fc87f8263f2E002c00fdb52Fbf";
 
 // export const saleProductAddress = "0x0e9cD8D15B1B5F686902DD3a03cA6b7C31ACc8BF";
