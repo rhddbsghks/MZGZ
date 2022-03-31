@@ -68,7 +68,9 @@ const MyProductCard = ({
     if (!productTokenId) return;
 
     axios
-      .get("/user/picture", {
+    // http://j6a507.p.ssafy.io:8080/
+    // /user/picture
+      .get("http://j6a507.p.ssafy.io:8080/user/picture", {
         params: {
           id: productTokenId,
         },
