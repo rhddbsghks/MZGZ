@@ -193,14 +193,16 @@ const MyProductCard = ({
               <ModalFooter>
                 <Heading fontSize="lg"></Heading>
                 <Spacer />
-                <Button
-                  size="lg"
-                  colorScheme="red"
-                  mt="auto"
-                  onClick={onClickCancel}
-                >
-                  판매 취소
-                </Button>
+                {onSale ? (
+                  <Button
+                    size="lg"
+                    colorScheme="red"
+                    mt="auto"
+                    onClick={onClickCancel}
+                  >
+                    판매 취소
+                  </Button>
+                ) : null}
               </ModalFooter>
             </ModalContent>
           </Modal>

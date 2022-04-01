@@ -791,8 +791,8 @@ const saleProductAbi = [
 // const mintProductAddress = "0xd1170C2c262dB7b7AE1fd3C32Da613F62e572cba";
 // export const saleProductAddress = "0x3Bf1457d629064BA24c99dd168c644E3D1445dfF";
 
-const mintProductAddress = "0x0BBEf1be23feDb7214b953968f2a238f9c21C450";
-export const saleProductAddress = "0x2AC668Cf224c7Ba2cfdB4066Aa36C159e1bD72fe";
+const mintProductAddress = "0xd7fDC708c70a643A9DB9668ea76DEB92edA80ac9";
+export const saleProductAddress = "0xf2BD26aF88DaDA11E6fe2C97D86C9f1417D08fEE";
 
 export const web3 = new Web3(window.ethereum);
 
