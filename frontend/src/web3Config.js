@@ -58,121 +58,6 @@ const mintProductAbi = [
     type: "event",
   },
   {
-    inputs: [
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "approve",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "string",
-        name: "brand",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "name",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "productType",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "serialNum",
-        type: "string",
-      },
-    ],
-    name: "mintProduct",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "safeTransferFrom",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-      {
-        internalType: "bytes",
-        name: "_data",
-        type: "bytes",
-      },
-    ],
-    name: "safeTransferFrom",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "operator",
-        type: "address",
-      },
-      {
-        internalType: "bool",
-        name: "approved",
-        type: "bool",
-      },
-    ],
-    name: "setApprovalForAll",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     anonymous: false,
     inputs: [
       {
@@ -201,11 +86,6 @@ const mintProductAbi = [
     inputs: [
       {
         internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        internalType: "address",
         name: "to",
         type: "address",
       },
@@ -215,7 +95,7 @@ const mintProductAbi = [
         type: "uint256",
       },
     ],
-    name: "transferFrom",
+    name: "approve",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -385,6 +265,34 @@ const mintProductAbi = [
     type: "function",
   },
   {
+    inputs: [
+      {
+        internalType: "string",
+        name: "brand",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "name",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "productType",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "serialNum",
+        type: "string",
+      },
+    ],
+    name: "mintProduct",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "name",
     outputs: [
@@ -461,16 +369,72 @@ const mintProductAbi = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "saleProduct",
-    outputs: [
+    inputs: [
       {
-        internalType: "contract SaleProduct",
-        name: "",
+        internalType: "address",
+        name: "from",
         type: "address",
       },
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
     ],
-    stateMutability: "view",
+    name: "safeTransferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+      {
+        internalType: "bytes",
+        name: "_data",
+        type: "bytes",
+      },
+    ],
+    name: "safeTransferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "operator",
+        type: "address",
+      },
+      {
+        internalType: "bool",
+        name: "approved",
+        type: "bool",
+      },
+    ],
+    name: "setApprovalForAll",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -580,39 +544,31 @@ const mintProductAbi = [
     stateMutability: "view",
     type: "function",
   },
-];
-const saleProductAbi = [
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "_productId",
-        type: "uint256",
+        internalType: "address",
+        name: "from",
+        type: "address",
       },
-    ],
-    name: "purchaseProduct",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function",
-  },
-  {
-    inputs: [
       {
-        internalType: "uint256",
-        name: "_productId",
-        type: "uint256",
+        internalType: "address",
+        name: "to",
+        type: "address",
       },
       {
         internalType: "uint256",
-        name: "_price",
+        name: "tokenId",
         type: "uint256",
       },
     ],
-    name: "setForSaleProduct",
+    name: "transferFrom",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
+];
+const saleProductAbi = [
   {
     inputs: [
       {
@@ -767,13 +723,47 @@ const saleProductAbi = [
     stateMutability: "view",
     type: "function",
   },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_productId",
+        type: "uint256",
+      },
+    ],
+    name: "purchaseProduct",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_productId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_price",
+        type: "uint256",
+      },
+    ],
+    name: "setForSaleProduct",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
 ];
 // private 네트워크 테스트시 각자 주소 로 변경
 
 // const mintProductAddress = "0x4Bb6aDcA59716d59C3a293C6C2F407ADE9FD7C24";
 // export const saleProductAddress = "0xDD88C3C06624B30c66196Fa73EC1BBc3D7192173";
-const mintProductAddress = "0x268AbB2D13217aD492cDD3791BA7F81a76eea5aa";
-export const saleProductAddress = "0x9eDa5405dE832AFDA6b9C2De7cE390Ae0a3c902a";
+// const mintProductAddress = "0x268AbB2D13217aD492cDD3791BA7F81a76eea5aa";
+// export const saleProductAddress = "0x9eDa5405dE832AFDA6b9C2De7cE390Ae0a3c902a";
+
+const mintProductAddress = "0xd1170C2c262dB7b7AE1fd3C32Da613F62e572cba";
+export const saleProductAddress = "0x3Bf1457d629064BA24c99dd168c644E3D1445dfF";
 
 export const web3 = new Web3(window.ethereum);
 
