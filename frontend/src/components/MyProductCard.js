@@ -15,6 +15,7 @@ import {
   ModalHeader,
   Heading,
   Spacer,
+  useToast,
 } from "@chakra-ui/react";
 import { saleProductContract, web3 } from "../web3Config";
 import ModalContentBody from "./ModalContentBody";
@@ -32,6 +33,7 @@ const MyProductCard = ({
   const [onSale, setOnSale] = useState(false);
   const [dealHistories, setDealHistories] = useState([]);
   const [picture, setPicture] = useState([]);
+  const toast = useToast();
   const onClickSell = async () => {
     try {
       if (!account) return;
@@ -41,10 +43,19 @@ const MyProductCard = ({
         .setForSaleProduct(productTokenId, web3.utils.toWei(sellPrice, "ether"))
         .send({ from: account });
 
-      alert("판매등록이 완료되었습니다.");
       setOnSale(true);
-    } catch (error) {
-      console.error(error);
+      toast({
+        title: '거래 정보',
+        description: '판매가 완료 되었습니다.',
+        duration: 2000,
+      });
+    } catch {
+      toast({
+        title: '거래 정보',
+        description: '판매에 실패했습니다.',
+        status: 'error',
+        duration: 2000,
+      });
     }
   };
 
