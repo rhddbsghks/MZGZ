@@ -461,19 +461,6 @@ const mintProductAbi = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "saleProduct",
-    outputs: [
-      {
-        internalType: "contract SaleProduct",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
     inputs: [
       {
         internalType: "bytes4",
@@ -582,6 +569,37 @@ const mintProductAbi = [
   },
 ];
 const saleProductAbi = [
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_productId",
+        type: "uint256",
+      },
+    ],
+    name: "cancelSaleProduct",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_productId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_price",
+        type: "uint256",
+      },
+    ],
+    name: "changePrice",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
   {
     inputs: [
       {
@@ -770,10 +788,11 @@ const saleProductAbi = [
 ];
 // private 네트워크 테스트시 각자 주소 로 변경
 
-// const mintProductAddress = "0x4Bb6aDcA59716d59C3a293C6C2F407ADE9FD7C24";
-// export const saleProductAddress = "0xDD88C3C06624B30c66196Fa73EC1BBc3D7192173";
-const mintProductAddress = "0x268AbB2D13217aD492cDD3791BA7F81a76eea5aa";
-export const saleProductAddress = "0x9eDa5405dE832AFDA6b9C2De7cE390Ae0a3c902a";
+// const mintProductAddress = "0xd1170C2c262dB7b7AE1fd3C32Da613F62e572cba";
+// export const saleProductAddress = "0x3Bf1457d629064BA24c99dd168c644E3D1445dfF";
+
+const mintProductAddress = "0xd7fDC708c70a643A9DB9668ea76DEB92edA80ac9";
+export const saleProductAddress = "0xf2BD26aF88DaDA11E6fe2C97D86C9f1417D08fEE";
 
 export const web3 = new Web3(window.ethereum);
 

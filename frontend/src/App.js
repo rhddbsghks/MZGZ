@@ -29,8 +29,24 @@ function App() {
     }
   };
 
+  const activateApprove = async () => {
+    try {
+      if (!account) return;
+
+      mintProductContract.methods
+        .setApprovalForAll(saleProductAddress, true)
+        .send({ from: account });
+    } catch (error) {
+      console.error(error);
+    }
+
+    localStorage.setItem(account, "true");
+  };
+
   useEffect(() => {
     getAccount();
+
+    if (localStorage.getItem(account) !== "true") activateApprove();
   }, [account]);
 
   useEffect(() => console.log(account), [account]);
