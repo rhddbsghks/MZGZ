@@ -16,6 +16,7 @@ import {
   Heading,
   Spacer,
 } from "@chakra-ui/react";
+import ReactLoading from 'react-loading';
 import { mintProductContract, saleProductContract, web3 } from "../web3Config";
 import ModalContentBody from "./ModalContentBody";
 import axios from "axios";
@@ -34,6 +35,8 @@ const SaleProductCard = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [dealHistories, setDealHistories] = useState([]);
   const [picture, setPicture] = useState([]);
+  const [owner, setOwner] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const getProductOwner = async () => {
     try {
@@ -44,6 +47,9 @@ const SaleProductCard = ({
       setIsBuyable(
         response.toLocaleLowerCase() === account.toLocaleLowerCase()
       );
+      if (response) {
+        setOwner(response.toLocaleLowerCase());
+      }
     } catch (error) {
       console.error(error);
     }
@@ -60,7 +66,8 @@ const SaleProductCard = ({
   const onClickBuy = async () => {
     try {
       if (!account) return;
-
+      console.log(loading);
+      setLoading(true);
       const response = await saleProductContract.methods
         .purchaseProduct(productTokenId)
         .send({ from: account, value: productPrice });
@@ -68,9 +75,11 @@ const SaleProductCard = ({
       if (response.status) {
         getOnSaleProducts();
       }
+      console.log(loading);
     } catch (error) {
       console.error(error);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -89,47 +98,52 @@ const SaleProductCard = ({
         console.log(res.data.data.picture_url);
       });
   }, [productTokenId]);
+  
+  
   return (
     <Box textAlign="center" borderWidth="1px" boxShadow="dark-lg" w={250} p={5}>
-      <>
-        <Image w={150} h={150} src={picture} alt="ProductCard" m="auto"></Image>
+      {
+        loading ? (
+          <>
+            <ReactLoading type="bubbles" height={150} width={150} />
+          </>
+        ) : (
+          <>
+            <Image w={150} h={150} src={picture} alt="ProductCard" m="auto" />
+            <Text fontSize="sm" color="gray">{brand}</Text>
+            <Text fontSize="lg" fontWeight="extrabold">{name}</Text>
+            <Text d="inline-block">{web3.utils.fromWei(productPrice)} ETH</Text>
 
-        <Text fontSize="sm" color="gray">
-          {brand}
-        </Text>
-        <Text fontSize="lg" fontWeight="extrabold">
-          {name}
-        </Text>
-        <Text d="inline-block">{web3.utils.fromWei(productPrice)} ETH</Text>
+            <Flex
+              justify="center"
+              m="auto"
+              mt="5"
+              width="80%"
+              flexDirection="column"
+            >
+              <Button
+                onClick={onOpen}
+                colorScheme="whatsapp"
+                width="80%"
+                m="auto"
+                mb="3"
+              >
+                상세정보
+              </Button>
 
-        <Flex
-          justify="center"
-          m="auto"
-          mt="5"
-          width="80%"
-          flexDirection="column"
-        >
-          <Button
-            onClick={onOpen}
-            colorScheme="whatsapp"
-            width="80%"
-            m="auto"
-            mb="3"
-          >
-            상세정보
-          </Button>
-
-          <Button
-            colorScheme="purple"
-            width="80%"
-            m="auto"
-            disabled={isBuyable}
-            onClick={onClickBuy}
-          >
-            구매
-          </Button>
-        </Flex>
-      </>
+              <Button
+                colorScheme="purple"
+                width="80%"
+                m="auto"
+                disabled={isBuyable}
+                onClick={onClickBuy}
+              >
+                구매
+              </Button>
+            </Flex>
+          </>
+        )
+      }
 
       <Modal
         isOpen={isOpen}
@@ -148,13 +162,14 @@ const SaleProductCard = ({
               name={name}
               productType={productType}
               serialNum={serialNum}
-              account={account}
+              account={owner}
               saleHistory={dealHistories}
             />
           </ModalBody>
         </ModalContent>
       </Modal>
     </Box>
+
   );
 };
 
