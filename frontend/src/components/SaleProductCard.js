@@ -22,7 +22,6 @@ import axios from "axios";
 
 const SaleProductCard = ({
   productTokenId,
-  productId,
   brand,
   productType,
   name,
@@ -39,8 +38,9 @@ const SaleProductCard = ({
   const getProductOwner = async () => {
     try {
       const response = await mintProductContract.methods
-        .ownerOf(productId)
+        .ownerOf(productTokenId)
         .call();
+
       setIsBuyable(
         response.toLocaleLowerCase() === account.toLocaleLowerCase()
       );
@@ -50,7 +50,6 @@ const SaleProductCard = ({
   };
 
   const getDealHistories = async () => {
-    console.log("히스토리");
     const histories = await saleProductContract.methods
       .getDealHistories(productTokenId)
       .call();
@@ -63,7 +62,7 @@ const SaleProductCard = ({
       if (!account) return;
 
       const response = await saleProductContract.methods
-        .purchaseProduct(productId)
+        .purchaseProduct(productTokenId)
         .send({ from: account, value: productPrice });
 
       if (response.status) {
@@ -76,18 +75,19 @@ const SaleProductCard = ({
 
   useEffect(() => {
     if (!productTokenId) return;
+    getDealHistories();
+    getProductOwner();
+
     axios
       .get("http://j6a507.p.ssafy.io:8080/user/picture", {
         params: {
-          id: productId,
+          id: productTokenId,
         },
       })
       .then((res) => {
         setPicture(res.data.data.picture_url);
         console.log(res.data.data.picture_url);
       });
-    getDealHistories();
-    getProductOwner();
   }, [productTokenId]);
   return (
     <Box textAlign="center" borderWidth="1px" boxShadow="dark-lg" w={250} p={5}>
@@ -143,7 +143,7 @@ const SaleProductCard = ({
           <ModalCloseButton />
           <ModalBody>
             <ModalContentBody
-              productTokenId={productId}
+              productTokenId={productTokenId}
               brand={brand}
               name={name}
               productType={productType}
