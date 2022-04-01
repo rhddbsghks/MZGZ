@@ -16,6 +16,7 @@ import {
   Heading,
   Spacer,
   useToast,
+  Center,
 } from "@chakra-ui/react";
 import ReactLoading from "react-loading";
 import { mintProductContract, saleProductContract, web3 } from "../web3Config";
@@ -140,7 +141,7 @@ const SaleProductCard = ({
     <Box textAlign="center" borderWidth="1px" boxShadow="dark-lg" w={250} p={5}>
       {
         loading ? (
-          <ReactLoading type="bubbles" height={300} width={150} />
+          <ReactLoading textAlign={Center} type="spinningBubbles" height={300} width={150} color="#fff434" />
         ) : (
           <>
             <Image w={150} h={150} src={picture} alt="ProductCard" m="auto" />
