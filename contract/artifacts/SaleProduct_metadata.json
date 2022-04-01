@@ -24,6 +24,37 @@
 						"type": "uint256"
 					}
 				],
+				"name": "cancelSaleProduct",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
+				"name": "changePrice",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_productId",
+						"type": "uint256"
+					}
+				],
 				"name": "getDealHistories",
 				"outputs": [
 					{
@@ -315,11 +346,11 @@
 			]
 		},
 		"SaleProduct.sol": {
-			"keccak256": "0x5ec063ed840bbf12aedbd56a2262c64a73290542d5d92f70f7f91efa446c3d32",
+			"keccak256": "0x94d29bf85447eeb578748872af2d32b38362c41c381c6346d1d5940fd11a90f3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4e319ed3a188c6a3884a70511fd89c432983093a4735ae68aa9942e506385b29",
-				"dweb:/ipfs/Qmbmj7Npg2RVRMzhpXSBpKYFZ8tJEKbrs1vVX3B67L4gWH"
+				"bzz-raw://49cdd6d9447b6afab922a148c3beefac7aac59d2a57ad361e16906aca4ceb24c",
+				"dweb:/ipfs/QmXw7AsYBdsQbv9mcGfyNP3xAXRcWkX3cbTL3oZ5HPTm3X"
 			]
 		}
 	},

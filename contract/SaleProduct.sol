@@ -36,7 +36,22 @@ contract SaleProduct {
         onSaleProductArray.push(_productId);
     }
 
+    function cancelSaleProduct(uint256 _productId) public {
+        productPrices[_productId] = 0;
 
+        for (uint256 i = 0; i < onSaleProductArray.length; i++) {
+            if (productPrices[onSaleProductArray[i]] == 0) {
+                onSaleProductArray[i] = onSaleProductArray[
+                    onSaleProductArray.length - 1
+                ];
+                onSaleProductArray.pop();
+            }
+        }
+    }
+
+    function changePrice(uint256 _productId, uint256 _price) public {
+        productPrices[_productId] = _price;
+    }
 
     function purchaseProduct(uint256 _productId) public payable {
         uint256 price = productPrices[_productId];

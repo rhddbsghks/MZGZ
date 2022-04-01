@@ -48,6 +48,25 @@ const MyProductCard = ({
     }
   };
 
+  const onClickCancel = async () => {
+    try {
+      if (!account) return;
+
+      if (!window.confirm("판매를 취소하시겠습니까?")) {
+        return;
+      }
+
+      await saleProductContract.methods
+        .cancelSaleProduct(productTokenId)
+        .send({ from: account });
+
+      setOnSale(false);
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const checkOnSale = async () => {
     const price = await saleProductContract.methods
       .getProductPrice(productTokenId)
@@ -64,12 +83,30 @@ const MyProductCard = ({
     setDealHistories(histories);
   };
 
+  const changePrice = async () => {
+    let sellPrice = await saleProductContract.methods
+      .getProductPrice(productTokenId)
+      .call();
+
+    sellPrice = web3.utils.fromWei(sellPrice, "ether");
+
+    sellPrice = prompt(
+      `변경할 가격을 입력해주세요.(ETH) (현재 가격: ${sellPrice}ETH)`
+    );
+
+    const response = await saleProductContract.methods
+      .changePrice(productTokenId, web3.utils.toWei(sellPrice, "ether"))
+      .send({ from: account });
+
+    alert("가격 변경이 완료되었습니다.");
+  };
+
   useEffect(() => {
     if (!productTokenId) return;
 
     axios
-    // http://j6a507.p.ssafy.io:8080/
-    // /user/picture
+      // http://j6a507.p.ssafy.io:8080/
+      // /user/picture
       .get("http://j6a507.p.ssafy.io:8080/user/picture", {
         params: {
           id: productTokenId,
@@ -112,8 +149,13 @@ const MyProductCard = ({
             상세정보
           </Button>
           {onSale ? (
-            <Button colorScheme="facebook" width="80%" m="auto" disabled={true}>
-              판매 중
+            <Button
+              colorScheme="pink"
+              width="80%"
+              m="auto"
+              onClick={changePrice}
+            >
+              가격 변경
             </Button>
           ) : (
             <Button
@@ -149,15 +191,15 @@ const MyProductCard = ({
               </ModalBody>
               <hr />
               <ModalFooter>
-                <Heading fontSize="lg">제품을 판매하시겠습니까?</Heading>
+                <Heading fontSize="lg"></Heading>
                 <Spacer />
                 <Button
                   size="lg"
-                  colorScheme="facebook"
+                  colorScheme="red"
                   mt="auto"
-                  onClick={onClickSell}
+                  onClick={onClickCancel}
                 >
-                  판매
+                  판매 취소
                 </Button>
               </ModalFooter>
             </ModalContent>

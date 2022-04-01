@@ -16,7 +16,7 @@ import {
   Heading,
   Spacer,
 } from "@chakra-ui/react";
-import ReactLoading from 'react-loading';
+import ReactLoading from "react-loading";
 import { mintProductContract, saleProductContract, web3 } from "../web3Config";
 import ModalContentBody from "./ModalContentBody";
 import axios from "axios";
@@ -35,7 +35,7 @@ const SaleProductCard = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [dealHistories, setDealHistories] = useState([]);
   const [picture, setPicture] = useState([]);
-  const [owner, setOwner] = useState('');
+  const [owner, setOwner] = useState("");
   const [loading, setLoading] = useState(false);
 
   const getProductOwner = async () => {
@@ -61,6 +61,24 @@ const SaleProductCard = ({
       .call();
 
     setDealHistories(histories);
+  };
+
+  const onClickCancel = async () => {
+    try {
+      if (!account) return;
+
+      if (!window.confirm("판매를 취소하시겠습니까?")) {
+        return;
+      }
+
+      await saleProductContract.methods
+        .cancelSaleProduct(productTokenId)
+        .send({ from: account });
+
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const onClickBuy = async () => {
@@ -98,52 +116,63 @@ const SaleProductCard = ({
         console.log(res.data.data.picture_url);
       });
   }, [productTokenId]);
-  
-  
+
   return (
     <Box textAlign="center" borderWidth="1px" boxShadow="dark-lg" w={250} p={5}>
-      {
-        loading ? (
-          <>
-            <ReactLoading type="bubbles" height={150} width={150} />
-          </>
-        ) : (
-          <>
-            <Image w={150} h={150} src={picture} alt="ProductCard" m="auto" />
-            <Text fontSize="sm" color="gray">{brand}</Text>
-            <Text fontSize="lg" fontWeight="extrabold">{name}</Text>
-            <Text d="inline-block">{web3.utils.fromWei(productPrice)} ETH</Text>
+      {loading ? (
+        <>
+          <ReactLoading type="bubbles" height={150} width={150} />
+        </>
+      ) : (
+        <>
+          <Image w={150} h={150} src={picture} alt="ProductCard" m="auto" />
+          <Text fontSize="sm" color="gray">
+            {brand}
+          </Text>
+          <Text fontSize="lg" fontWeight="extrabold">
+            {name}
+          </Text>
+          <Text d="inline-block">{web3.utils.fromWei(productPrice)} ETH</Text>
 
-            <Flex
-              justify="center"
-              m="auto"
-              mt="5"
+          <Flex
+            justify="center"
+            m="auto"
+            mt="5"
+            width="80%"
+            flexDirection="column"
+          >
+            <Button
+              onClick={onOpen}
+              colorScheme="whatsapp"
               width="80%"
-              flexDirection="column"
+              m="auto"
+              mb="3"
             >
+              상세정보
+            </Button>
+
+            {isBuyable ? (
               <Button
-                onClick={onOpen}
-                colorScheme="whatsapp"
+                colorScheme="red"
                 width="80%"
                 m="auto"
-                mb="3"
+                onClick={onClickCancel}
               >
-                상세정보
+                판매 취소
               </Button>
-
+            ) : (
               <Button
                 colorScheme="purple"
                 width="80%"
                 m="auto"
-                disabled={isBuyable}
                 onClick={onClickBuy}
               >
                 구매
               </Button>
-            </Flex>
-          </>
-        )
-      }
+            )}
+          </Flex>
+        </>
+      )}
 
       <Modal
         isOpen={isOpen}
@@ -169,7 +198,6 @@ const SaleProductCard = ({
         </ModalContent>
       </Modal>
     </Box>
-
   );
 };
 
