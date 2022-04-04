@@ -17,7 +17,6 @@ import {
   Spacer,
   useToast,
 } from "@chakra-ui/react";
-import ReactLoading from 'react-loading';
 import { saleProductContract, web3 } from "../web3Config";
 import ModalContentBody from "./ModalContentBody";
 import axios from "axios";
@@ -70,16 +69,11 @@ const MyProductCard = ({
   const onClickCancel = async () => {
     try {
       if (!account) return;
-
-      if (!window.confirm("판매를 취소하시겠습니까?")) {
-        return;
-      }
-
+      setLoading(true);
       await saleProductContract.methods
         .cancelSaleProduct(productTokenId)
         .send({ from: account });
 
-      setOnSale(false);
       toast({
         title: '거래 정보',
         description: '판매가 취소되었습니다.',
@@ -143,8 +137,6 @@ const MyProductCard = ({
     if (!productTokenId) return;
 
     axios
-      // http://j6a507.p.ssafy.io:8080/
-      // /user/picture
       .get("http://j6a507.p.ssafy.io:8080/user/picture", {
         params: {
           id: productTokenId,
@@ -162,9 +154,6 @@ const MyProductCard = ({
   }, [productTokenId]);
   return (
     <Box textAlign="center" borderWidth="1px" boxShadow="dark-lg" w={250} p="5">
-      {loading ? (
-        <ReactLoading type="spinningBubbles" height={300} width='100%' color="#000099" />
-        ) : (
       <>
         <Image w={150} h={150} src={picture} alt="AnimalCard" m="auto" />
         <Text fontSize="sm" color="gray">
@@ -195,6 +184,9 @@ const MyProductCard = ({
               width="80%"
               m="auto"
               onClick={changePrice}
+              loadingText='가격 변경중'
+              spinnerPlacement='start'
+              isLoading={loading}
             >
               가격 변경
             </Button>
@@ -204,6 +196,9 @@ const MyProductCard = ({
               width="80%"
               m="auto"
               onClick={onClickSell}
+              loadingText='판매중'
+              spinnerPlacement='start'
+              isLoading={loading}
             >
               판매
             </Button>
@@ -248,8 +243,7 @@ const MyProductCard = ({
             </ModalContent>
           </Modal>
         </Flex>
-      </>)
-      }
+      </>
     </Box>
   );
 };

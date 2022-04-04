@@ -9,6 +9,7 @@ import {
   Select,
   Image,
   Stack,
+  toast,
 } from "@chakra-ui/react";
 import { mintProductContract } from "../web3Config";
 import axios from "axios";
@@ -26,6 +27,7 @@ const Main = ({ account }) => {
   const [file, setFile] = useState("");
   const [previewURL, setPreviewURL] = useState("");
   const [preview, setPreview] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const productImage = useRef();
   const productBrand = useRef();
@@ -56,25 +58,9 @@ const Main = ({ account }) => {
   };
 
   const onClickMint = async () => {
-    // const formData = new FormData();
-    // formData.append("images", productImage);
-    // formData.append("id", 55);
-
-    // axios({
-    //   method: "post",
-    //   url: "http://localhost:8080/user/picture",
-    //   data: formData,
-    //   headers: { "Content-Type": "multipart/form-data"}
-    // }).then(res=>{
-    //   console.log(res)
-    // });
-
-    console.log(productBrand.current.value);
-    console.log(productType.current.value);
-    console.log(productSerial.current.value);
     try {
       if (!account) return;
-
+      setLoading(true);
       const response = await mintProductContract.methods
         .mintProduct(
           productBrand.current.value,
@@ -83,15 +69,12 @@ const Main = ({ account }) => {
           productSerial.current.value
         )
         .send({ from: account });
-
-      console.log("---------------");
-
       // post
 
       const formData = new FormData();
       formData.append("images", file);
       formData.append("id", response.events.Transfer.returnValues.tokenId);
-
+      
       axios({
         method: "post",
         url: "http://j6a507.p.ssafy.io:8080/user/picture",
@@ -100,8 +83,15 @@ const Main = ({ account }) => {
       }).then((res) => {
         console.log(res);
       });
-
-      alert("등록이 완료되었습니다.");
+      setTimeout(() =>{
+        toast({
+          title: '상품 등록 정보',
+          description: '상품 등록이 완료되었습니다.',
+          status:'error',
+          duration: 2000,
+        });
+      }, 100);
+      setLoading(false);
       window.location.reload(true);
     } catch (error) {
       console.log(error);
@@ -150,7 +140,7 @@ const Main = ({ account }) => {
           <Input id="serialNum-new" type="text" ref={productSerial} />
         </FormControl>
       </Box>
-      <Button mt={4} size="sm" colorScheme="blue" onClick={onClickMint}>
+      <Button mt={4} size="sm" colorScheme="blue" onClick={onClickMint} isLoading={loading}>
         등록
       </Button>
     </Flex>
