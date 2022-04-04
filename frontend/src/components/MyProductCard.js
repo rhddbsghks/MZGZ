@@ -17,6 +17,7 @@ import {
   Spacer,
   useToast,
 } from "@chakra-ui/react";
+import ReactLoading from 'react-loading';
 import { saleProductContract, web3 } from "../web3Config";
 import ModalContentBody from "./ModalContentBody";
 import axios from "axios";
@@ -33,20 +34,25 @@ const MyProductCard = ({
   const [onSale, setOnSale] = useState(false);
   const [dealHistories, setDealHistories] = useState([]);
   const [picture, setPicture] = useState([]);
+  const [loading, setLoading] = useState(false);
   const toast = useToast();
+
   const onClickSell = async () => {
     try {
       if (!account) return;
 
       let sellPrice = prompt("판매가격을 입력해주세요. (ETH)");
+      setLoading(true);
+
       const response = await saleProductContract.methods
         .setForSaleProduct(productTokenId, web3.utils.toWei(sellPrice, "ether"))
         .send({ from: account });
 
+      setLoading(false);
       setOnSale(true);
       toast({
         title: '거래 정보',
-        description: '판매가 완료 되었습니다.',
+        description: '판매 등록이 완료 되었습니다.',
         duration: 2000,
       });
     } catch {
@@ -56,6 +62,8 @@ const MyProductCard = ({
         status: 'error',
         duration: 2000,
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -72,9 +80,16 @@ const MyProductCard = ({
         .send({ from: account });
 
       setOnSale(false);
-      window.location.reload();
+      toast({
+        title: '거래 정보',
+        description: '판매가 취소되었습니다.',
+        status:'warning',
+        duration: 2000,
+      });
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -104,12 +119,24 @@ const MyProductCard = ({
     sellPrice = prompt(
       `변경할 가격을 입력해주세요.(ETH) (현재 가격: ${sellPrice}ETH)`
     );
+    try {
+      setLoading(true);
+      const response = await saleProductContract.methods
+        .changePrice(productTokenId, web3.utils.toWei(sellPrice, "ether"))
+        .send({ from: account });
+        toast({
+          title: '거래 정보',
+          description: '가격 변경이 완료되었습니다.',
+          status:'warning',
+          duration: 2000,
+        });
+    } catch (error){
+      console.log(error);
+    }
+    finally {
+      setLoading(false);
+    }
 
-    const response = await saleProductContract.methods
-      .changePrice(productTokenId, web3.utils.toWei(sellPrice, "ether"))
-      .send({ from: account });
-
-    alert("가격 변경이 완료되었습니다.");
   };
 
   useEffect(() => {
@@ -135,6 +162,9 @@ const MyProductCard = ({
   }, [productTokenId]);
   return (
     <Box textAlign="center" borderWidth="1px" boxShadow="dark-lg" w={250} p="5">
+      {loading ? (
+        <ReactLoading type="spinningBubbles" height={300} width='100%' color="#000099" />
+        ) : (
       <>
         <Image w={150} h={150} src={picture} alt="AnimalCard" m="auto" />
         <Text fontSize="sm" color="gray">
@@ -218,7 +248,8 @@ const MyProductCard = ({
             </ModalContent>
           </Modal>
         </Flex>
-      </>
+      </>)
+      }
     </Box>
   );
 };
