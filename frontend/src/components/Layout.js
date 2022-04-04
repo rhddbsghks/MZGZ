@@ -1,5 +1,6 @@
 import React from "react";
-import { Stack, Flex, Text, GridItem, Grid, Button, Image, Link } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { Stack, Flex, Text, GridItem, Grid, Image } from "@chakra-ui/react";
 
 const Layout = ({ children, account }) => {
   return (
@@ -14,14 +15,15 @@ const Layout = ({ children, account }) => {
       >
         <GridItem colSpan={1} />
         <GridItem colSpan={1} justifySelf="center">
-          <Image src="/logo.png" alt="img" w={18} h={18} />
+          <Image src="/logo.png" alt="img" w={18} h={18}></Image>
         </GridItem>
         <GridItem colSpan={5}>
           {account ? <Text><strong>{account}</strong> 님 환영합니다.</Text> : <Text><strong>로그인 해주세요.</strong></Text>}
         </GridItem>
         <GridItem colSpan={1} justifySelf="center">
           <Link
-            to="/" size="sm" colorScheme="blue"
+            to="/"
+            size="sm" colorScheme="blue"
             textColor="blue" fontWeight="bold" fontSize="large"
           >
             상품 등록
@@ -29,7 +31,8 @@ const Layout = ({ children, account }) => {
         </GridItem>
         <GridItem colSpan={1} justifySelf="center">
           <Link
-            to="/my-product" size="sm" colorScheme="blue"
+            to="/my-product"
+            size="sm" colorScheme="blue"
             textColor="blue" fontWeight="bold" fontSize="large"
           >
             내 상품
@@ -37,7 +40,8 @@ const Layout = ({ children, account }) => {
         </GridItem>
         <GridItem colSpan={1} justifySelf="center">
           <Link
-            to="/sale-product" size="sm" colorScheme="blue"
+            to="/sale-product"
+            size="sm" colorScheme="blue"
             textColor="blue" fontWeight="bold" fontSize="large"
             >
               판매 목록
