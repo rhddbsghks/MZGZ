@@ -3,11 +3,12 @@ import React from "react";
 import { mintProductContract, saleProductContract } from "../web3Config";
 
 import { useEffect, useState } from "react";
-import { Grid, Box } from "@chakra-ui/react";
+import { Grid, Box, StackDivider, Stack, Container } from "@chakra-ui/react";
 import SaleProductCard from "../components/SaleProductCard";
 
 const SaleProduct = ({ account }) => {
   const [saleProductArray, setSaleProductArray] = useState();
+  const [scrollBehavior, setScrollBehavior] = useState('inside');
 
   const getOnSaleProducts = async () => {
     try {
@@ -56,22 +57,22 @@ const SaleProduct = ({ account }) => {
   return (
     <>
       {saleProductArray && saleProductArray.length > 0 ? (
-        <Grid mt="4" templateColumns="repeat(4,1fr)" gap="8">
+        <Grid mt="4" templateColumns="repeat(4,1fr)" gap="8" scrollBehavior={scrollBehavior}>
           {saleProductArray.map((v, i) => {
             return (
               <SaleProductCard
-                key={i}
-                productTokenId={v.productId}
-                brand={v.brand}
-                productType={v.type}
-                name={v.name}
-                serialNum={v.serialNum}
-                productPrice={v.productPrice}
-                account={account}
-                getOnSaleProducts={getOnSaleProducts}
+              key={i}
+              productTokenId={v.productId}
+              brand={v.brand}
+              productType={v.type}
+              name={v.name}
+              serialNum={v.serialNum}
+              productPrice={v.productPrice}
+              account={account}
+              getOnSaleProducts={getOnSaleProducts}
               />
-            );
-          })}
+              );
+            })}
         </Grid>
       ) : (
         <Box>판매중인 상품이 없습니다.</Box>

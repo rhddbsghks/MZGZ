@@ -1,24 +1,15 @@
+import { Box, Flex } from "@chakra-ui/react";
 import React from "react";
 import { Particles } from "react-tsparticles";
 
-
-
 const Main = () => {
-  const particlesInit = (main) => {
-    console.log(main);
-
-    // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
-  };
-
-  const particlesLoaded = (container) => {
-    console.log(container);
-  };
+  
   return (
-    <>
+    <Box paddingTop={5} zIndex={-999}>
     <Particles
       id="tsparticles"
-      init={particlesInit}
-      loaded={particlesLoaded}
+      // init={particlesInit}
+      // loaded={particlesLoaded}
       options={{
         background: {
           color: {
@@ -97,7 +88,7 @@ const Main = () => {
         detectRetina: true,
       }}
       />
-  </>
+  </Box>
   );
 };
 
