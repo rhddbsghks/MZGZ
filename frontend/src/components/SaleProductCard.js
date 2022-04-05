@@ -95,24 +95,24 @@ const SaleProductCard = ({
       if (response.status) {
         getOnSaleProducts();
         toast({
-          title: '거래 정보',
-          description: '구매가 완료 되었습니다.',
-          status:'warning',
+          title: "거래 정보",
+          description: "구매가 완료 되었습니다.",
+          status: "warning",
           duration: 2000,
         });
       } else {
         toast({
-          title: '거래 정보',
-          description: '구매에 실패했습니다.',
-          status:'error',
+          title: "거래 정보",
+          description: "구매에 실패했습니다.",
+          status: "error",
           duration: 2000,
         });
       }
     } catch {
       toast({
-        title: '거래 정보',
-        description: '구매에 실패했습니다.',
-        status:'error',
+        title: "거래 정보",
+        description: "구매에 실패했습니다.",
+        status: "error",
         duration: 2000,
       });
     }
@@ -137,16 +137,26 @@ const SaleProductCard = ({
   }, [productTokenId]);
 
   return (
-    <Box textAlign="center" borderWidth="1px" boxShadow="dark-lg" w={250} p={5}>
-      {
-        loading ? (
-          <ReactLoading type="bubbles" height={300} width={150} />
-        ) : (
-          <>
-            <Image w={150} h={150} src={picture} alt="ProductCard" m="auto" />
-            <Text fontSize="sm" color="gray">{brand}</Text>
-            <Text fontSize="lg" fontWeight="extrabold">{name}</Text>
-            <Text d="inline-block">{web3.utils.fromWei(productPrice)} ETH</Text>
+    <Box
+      textAlign="center"
+      borderWidth="1px"
+      boxShadow="dark-lg"
+      w={250}
+      p={5}
+      mb={5}
+    >
+      {loading ? (
+        <ReactLoading type="bubbles" height={300} width={150} />
+      ) : (
+        <>
+          <Image w={150} h={150} src={picture} alt="ProductCard" m="auto" />
+          <Text fontSize="sm" color="gray">
+            {brand}
+          </Text>
+          <Text fontSize="lg" fontWeight="extrabold">
+            {name}
+          </Text>
+          <Text d="inline-block">{web3.utils.fromWei(productPrice)} ETH</Text>
 
           <Flex
             justify="center"

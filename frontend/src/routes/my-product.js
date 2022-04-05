@@ -1,7 +1,7 @@
 import React from "react";
 import { mintProductContract } from "../web3Config";
 import { useEffect, useState } from "react";
-import { Grid, Box } from "@chakra-ui/react";
+import { Grid, Box, Flex } from "@chakra-ui/react";
 import MyProductCard from "../components/MyProductCard";
 
 const MyProduct = ({ account }) => {
@@ -48,6 +48,7 @@ const MyProduct = ({ account }) => {
 
   return (
     <>
+      <Flex h="30%" marginTop="5%" marginBottom="2%"></Flex>
       {productArray && productArray.length > 0 ? (
         <Grid templateColumns="repeat(4, 1fr)" gap={8} mt="4">
           {productArray.map((v, i) => {
