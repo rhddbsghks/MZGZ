@@ -74,7 +74,7 @@ const AddProduct = ({ account }) => {
       const formData = new FormData();
       formData.append("images", file);
       formData.append("id", response.events.Transfer.returnValues.tokenId);
-      
+
       axios({
         method: "post",
         url: "http://j6a507.p.ssafy.io:8080/user/picture",
@@ -83,11 +83,11 @@ const AddProduct = ({ account }) => {
       }).then((res) => {
         console.log(res);
       });
-      setTimeout(() =>{
+      setTimeout(() => {
         toast({
-          title: '상품 등록 정보',
-          description: '상품 등록이 완료되었습니다.',
-          status:'error',
+          title: "상품 등록 정보",
+          description: "상품 등록이 완료되었습니다.",
+          status: "error",
           duration: 2000,
         });
       }, 100);
@@ -106,7 +106,8 @@ const AddProduct = ({ account }) => {
       flexDirection="column"
     >
       <Box>
-        <Stack>{preview}</Stack>
+        {file === "" ? <Box h="250px"></Box> : <Stack>{preview}</Stack>}
+
         <FormControl isRequired>
           <FormLabel htmlFor="brand-new">상품 이미지</FormLabel>
           <Input
@@ -140,7 +141,13 @@ const AddProduct = ({ account }) => {
           <Input id="serialNum-new" type="text" ref={productSerial} />
         </FormControl>
       </Box>
-      <Button mt={4} size="sm" colorScheme="blue" onClick={onClickMint} isLoading={loading}>
+      <Button
+        mt={4}
+        size="sm"
+        colorScheme="blue"
+        onClick={onClickMint}
+        isLoading={loading}
+      >
         등록
       </Button>
     </Flex>

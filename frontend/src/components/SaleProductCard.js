@@ -68,7 +68,7 @@ const SaleProductCard = ({
       await saleProductContract.methods
         .cancelSaleProduct(productTokenId)
         .send({ from: account });
-      
+
       window.location.reload();
     } catch (error) {
       console.error(error);
@@ -88,24 +88,24 @@ const SaleProductCard = ({
       if (response.status) {
         getOnSaleProducts();
         toast({
-          title: '거래 정보',
-          description: '구매가 완료 되었습니다.',
-          status:'warning',
+          title: "거래 정보",
+          description: "구매가 완료 되었습니다.",
+          status: "warning",
           duration: 2000,
         });
       } else {
         toast({
-          title: '거래 정보',
-          description: '구매에 실패했습니다.',
-          status:'error',
+          title: "거래 정보",
+          description: "구매에 실패했습니다.",
+          status: "error",
           duration: 2000,
         });
       }
     } catch {
       toast({
-        title: '거래 정보',
-        description: '구매에 실패했습니다.',
-        status:'error',
+        title: "거래 정보",
+        description: "구매에 실패했습니다.",
+        status: "error",
         duration: 2000,
       });
     }
@@ -130,81 +130,93 @@ const SaleProductCard = ({
   }, [productTokenId]);
 
   return (
-    <Box textAlign="center" borderWidth="1px" boxShadow="dark-lg" w={250} p={5}>
+    <Box
+      textAlign="center"
+      borderWidth="1px"
+      boxShadow="dark-lg"
+      w={250}
+      p={5}
+      m={5}
+    >
       <>
         <Image w={150} h={150} src={picture} alt="ProductCard" m="auto" />
-        <Text fontSize="sm" color="gray">{brand}</Text>
-        <Text fontSize="lg" fontWeight="extrabold">{name}</Text>
+        <Text fontSize="sm" color="gray">
+          {brand}
+        </Text>
+        <Text fontSize="lg" fontWeight="extrabold">
+          {name}
+        </Text>
         <Text d="inline-block">{web3.utils.fromWei(productPrice)} ETH</Text>
 
-      <Flex
-        justify="center"
-        m="auto"
-        mt="5"
-        width="80%"
-        flexDirection="column"
-      >
-        <Button
-          onClick={onOpen}
-          colorScheme="whatsapp"
-          width="80%"
+        <Flex
+          justify="center"
           m="auto"
-          mb="3"
+          mt="5"
+          width="80%"
+          flexDirection="column"
         >
-          상세정보
-        </Button>
-
-        {isBuyable ? (
           <Button
-            colorScheme="red"
+            onClick={onOpen}
+            colorScheme="whatsapp"
             width="80%"
             m="auto"
-            onClick={onClickCancel}
-            loadingText='판매 취소중'
-            spinnerPlacement='start'
-            isLoading={loading}
+            mb="3"
           >
-            판매 취소
+            상세정보
           </Button>
-        ) : (
-          <Button
-            colorScheme="purple"
-            width="80%"
-            m="auto"
-            onClick={onClickBuy}
-            loadingText='구매중'
-            spinnerPlacement='start'
-            isLoading={loading}
-          >
-            구매
-          </Button>)}
+
+          {isBuyable ? (
+            <Button
+              colorScheme="red"
+              width="80%"
+              m="auto"
+              onClick={onClickCancel}
+              loadingText="판매 취소중"
+              spinnerPlacement="start"
+              isLoading={loading}
+            >
+              판매 취소
+            </Button>
+          ) : (
+            <Button
+              colorScheme="purple"
+              width="80%"
+              m="auto"
+              onClick={onClickBuy}
+              loadingText="구매중"
+              spinnerPlacement="start"
+              isLoading={loading}
+            >
+              구매
+            </Button>
+          )}
         </Flex>
       </>
 
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      motionPreset="slideInBottom"
-      size="4xl"
-    >
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>제품 정보</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <ModalContentBody
-            productTokenId={productTokenId}
-            brand={brand}
-            name={name}
-            productType={productType}
-            serialNum={serialNum}
-            account={owner}
-            saleHistory={dealHistories}
-          />
-        </ModalBody>
-      </ModalContent>
-    </Modal>
-  </Box>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        motionPreset="slideInBottom"
+        size="4xl"
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>제품 정보</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <ModalContentBody
+              productTokenId={productTokenId}
+              brand={brand}
+              name={name}
+              productType={productType}
+              serialNum={serialNum}
+              account={owner}
+              saleHistory={dealHistories}
+            />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </Box>
   );
 };
 

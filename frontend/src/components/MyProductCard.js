@@ -50,15 +50,15 @@ const MyProductCard = ({
       setLoading(false);
       setOnSale(true);
       toast({
-        title: '거래 정보',
-        description: '판매 등록이 완료 되었습니다.',
+        title: "거래 정보",
+        description: "판매 등록이 완료 되었습니다.",
         duration: 2000,
       });
     } catch {
       toast({
-        title: '거래 정보',
-        description: '판매에 실패했습니다.',
-        status: 'error',
+        title: "거래 정보",
+        description: "판매에 실패했습니다.",
+        status: "error",
         duration: 2000,
       });
     } finally {
@@ -75,9 +75,9 @@ const MyProductCard = ({
         .send({ from: account });
 
       toast({
-        title: '거래 정보',
-        description: '판매가 취소되었습니다.',
-        status:'warning',
+        title: "거래 정보",
+        description: "판매가 취소되었습니다.",
+        status: "warning",
         duration: 2000,
       });
     } catch (error) {
@@ -118,19 +118,17 @@ const MyProductCard = ({
       const response = await saleProductContract.methods
         .changePrice(productTokenId, web3.utils.toWei(sellPrice, "ether"))
         .send({ from: account });
-        toast({
-          title: '거래 정보',
-          description: '가격 변경이 완료되었습니다.',
-          status:'warning',
-          duration: 2000,
-        });
-    } catch (error){
+      toast({
+        title: "거래 정보",
+        description: "가격 변경이 완료되었습니다.",
+        status: "warning",
+        duration: 2000,
+      });
+    } catch (error) {
       console.log(error);
-    }
-    finally {
+    } finally {
       setLoading(false);
     }
-
   };
 
   useEffect(() => {
@@ -153,7 +151,14 @@ const MyProductCard = ({
     getDealHistories();
   }, [productTokenId]);
   return (
-    <Box textAlign="center" borderWidth="1px" boxShadow="dark-lg" w={250} p="5">
+    <Box
+      textAlign="center"
+      borderWidth="1px"
+      boxShadow="dark-lg"
+      w={250}
+      p="5"
+      m="5"
+    >
       <>
         <Image w={150} h={150} src={picture} alt="AnimalCard" m="auto" />
         <Text fontSize="sm" color="gray">
@@ -184,8 +189,8 @@ const MyProductCard = ({
               width="80%"
               m="auto"
               onClick={changePrice}
-              loadingText='가격 변경중'
-              spinnerPlacement='start'
+              loadingText="가격 변경중"
+              spinnerPlacement="start"
               isLoading={loading}
             >
               가격 변경
@@ -196,8 +201,8 @@ const MyProductCard = ({
               width="80%"
               m="auto"
               onClick={onClickSell}
-              loadingText='판매중'
-              spinnerPlacement='start'
+              loadingText="판매중"
+              spinnerPlacement="start"
               isLoading={loading}
             >
               판매
