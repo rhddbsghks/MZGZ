@@ -12,9 +12,11 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import SaleProductCard from "../components/SaleProductCard";
+import Loader from "../common/Loader";
 
 const SaleProduct = ({ account }) => {
   const [saleProductArray, setSaleProductArray] = useState();
+  const [loading, setLoading] = useState(false);
   const [filterArray, setFilterArray] = useState([]);
   const [checkedItems, setCheckedItems] = useState([
     true,
@@ -42,6 +44,7 @@ const SaleProduct = ({ account }) => {
 
   const getOnSaleProducts = async () => {
     try {
+      setLoading(true);
       const onSaleProductArrayLength = await saleProductContract.methods
         .getOnSaleProductArrayLength()
         .call();
@@ -78,6 +81,8 @@ const SaleProduct = ({ account }) => {
       setFilterArray(tempOnSaleArray);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -203,30 +208,33 @@ const SaleProduct = ({ account }) => {
         </Stack>
       </Flex>
 
-      <Flex>
-        {" "}
-        {filterArray && filterArray.length > 0 ? (
-          <Grid templateColumns="repeat(4,1fr)" gap="8">
-            {filterArray.map((v, i) => {
-              return (
-                <SaleProductCard
-                  key={i}
-                  productTokenId={v.productId}
-                  brand={v.brand}
-                  productType={v.type}
-                  name={v.name}
-                  serialNum={v.serialNum}
-                  productPrice={v.productPrice}
-                  account={account}
-                  getOnSaleProducts={getOnSaleProducts}
-                />
-              );
-            })}
-          </Grid>
-        ) : (
-          <Box>판매중인 상품이 없습니다.</Box>
-        )}
-      </Flex>
+      {loading ? (
+        <Loader msg="판매 상품 불러오는 중..."></Loader>
+      ) : (
+        <Flex>
+          {filterArray && filterArray.length > 0 ? (
+            <Grid templateColumns="repeat(4,1fr)" gap="8">
+              {filterArray.map((v, i) => {
+                return (
+                  <SaleProductCard
+                    key={i}
+                    productTokenId={v.productId}
+                    brand={v.brand}
+                    productType={v.type}
+                    name={v.name}
+                    serialNum={v.serialNum}
+                    productPrice={v.productPrice}
+                    account={account}
+                    getOnSaleProducts={getOnSaleProducts}
+                  />
+                );
+              })}
+            </Grid>
+          ) : (
+            <Box>판매중인 상품이 없습니다.</Box>
+          )}
+        </Flex>
+      )}
     </>
   );
 };
