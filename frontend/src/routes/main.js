@@ -1,7 +1,8 @@
 import React from "react";
 import { Particles } from "react-tsparticles";
-
-
+import {
+  Box,
+} from "@chakra-ui/react";
 
 const Main = () => {
   const particlesInit = (main) => {
