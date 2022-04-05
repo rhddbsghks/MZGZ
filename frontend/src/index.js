@@ -18,6 +18,7 @@ ReactDOM.render(
             value: "unset",
           },
         },
+        fpsLimit:30,
         detectRetina: true,
         pauseOnBlur: true,
         interactivity: {
@@ -67,8 +68,8 @@ ReactDOM.render(
             enable: true,
             outMode: "bounce",
             random: true,
-            speed: 6,
-            straight: false,
+            speed: 4,
+            straight: true,
           },
           number: {
             density: {
