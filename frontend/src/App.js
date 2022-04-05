@@ -7,6 +7,7 @@ import { mintProductContract, saleProductAddress } from "./web3Config";
 import Main from "./routes/main";
 import MyProduct from "./routes/my-product";
 import SaleProduct from "./routes/sale-product";
+import AddProduct from "./routes/add-product";
 import Layout from "./components/Layout";
 import { useEffect, useState } from "react";
 
@@ -55,15 +56,10 @@ function App() {
       <BrowserRouter>
         <Layout account={account}>
           <Routes>
-            <Route path="/" element={<Main account={account} />}></Route>
-            <Route
-              path="my-product"
-              element={<MyProduct account={account} />}
-            ></Route>
-            <Route
-              path="sale-product"
-              element={<SaleProduct account={account} />}
-            ></Route>
+            <Route path="/" element={<Main account={account} />} />
+            <Route path="add-product" element={<AddProduct account={account} />} />
+            <Route path="my-product" element={<MyProduct account={account} />} />
+            <Route path="sale-product" element={<SaleProduct account={account} />} />
           </Routes>
         </Layout>
       </BrowserRouter>
