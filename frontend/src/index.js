@@ -18,7 +18,8 @@ ReactDOM.render(
             value: "unset",
           },
         },
-        fpsLimit: 60,
+        detectRetina: true,
+        pauseOnBlur: true,
         interactivity: {
           events: {
             onClick: {
