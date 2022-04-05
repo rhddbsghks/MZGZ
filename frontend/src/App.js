@@ -1,8 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Web3 from "web3";
-import { Button } from "@chakra-ui/react";
 import { mintProductContract, saleProductAddress } from "./web3Config";
 import Main from "./routes/main";
 import MyProduct from "./routes/my-product";
@@ -10,6 +8,8 @@ import SaleProduct from "./routes/sale-product";
 import AddProduct from "./routes/add-product";
 import Layout from "./components/Layout";
 import { useEffect, useState } from "react";
+import Particles from "react-tsparticles";
+
 
 function App() {
   const [account, setAccount] = useState("");
@@ -61,6 +61,7 @@ function App() {
             <Route path="my-product" element={<MyProduct account={account} />} />
             <Route path="sale-product" element={<SaleProduct account={account} />} />
           </Routes>
+          {/* <Particles id="tsparticles" url="http://foo.bar/particles.json" zIndex={-999} /> */}
         </Layout>
       </BrowserRouter>
     </>

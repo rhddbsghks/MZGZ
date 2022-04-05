@@ -3,14 +3,7 @@ import React, { useRef } from "react";
 import { mintProductContract, saleProductContract } from "../web3Config";
 
 import { useEffect, useState } from "react";
-import {
-  Grid,
-  Box,
-  Checkbox,
-  CheckboxGroup,
-  Flex,
-  Stack,
-} from "@chakra-ui/react";
+import { Grid, Box, Checkbox, Stack, Flex } from "@chakra-ui/react";
 import SaleProductCard from "../components/SaleProductCard";
 import Loader from "../common/Loader";
 
