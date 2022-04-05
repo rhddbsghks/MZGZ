@@ -9,7 +9,7 @@ import Loader from "../common/Loader";
 
 const SaleProduct = ({ account }) => {
   const [saleProductArray, setSaleProductArray] = useState();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [filterArray, setFilterArray] = useState([]);
   const [checkedItems, setCheckedItems] = useState([
     true,
