@@ -33,48 +33,57 @@ const MyProductCard = ({
   const [onSale, setOnSale] = useState(false);
   const [dealHistories, setDealHistories] = useState([]);
   const [picture, setPicture] = useState([]);
+  const [loading, setLoading] = useState(false);
   const toast = useToast();
+
   const onClickSell = async () => {
     try {
       if (!account) return;
 
       let sellPrice = prompt("판매가격을 입력해주세요. (ETH)");
+      setLoading(true);
+
       const response = await saleProductContract.methods
         .setForSaleProduct(productTokenId, web3.utils.toWei(sellPrice, "ether"))
         .send({ from: account });
 
+      setLoading(false);
       setOnSale(true);
       toast({
-        title: '거래 정보',
-        description: '판매가 완료 되었습니다.',
+        title: "거래 정보",
+        description: "판매 등록이 완료 되었습니다.",
         duration: 2000,
       });
     } catch {
       toast({
-        title: '거래 정보',
-        description: '판매에 실패했습니다.',
-        status: 'error',
+        title: "거래 정보",
+        description: "판매에 실패했습니다.",
+        status: "error",
         duration: 2000,
       });
+    } finally {
+      setLoading(false);
     }
   };
 
   const onClickCancel = async () => {
     try {
       if (!account) return;
-
-      if (!window.confirm("판매를 취소하시겠습니까?")) {
-        return;
-      }
-
+      setLoading(true);
       await saleProductContract.methods
         .cancelSaleProduct(productTokenId)
         .send({ from: account });
 
-      setOnSale(false);
-      window.location.reload();
+      toast({
+        title: "거래 정보",
+        description: "판매가 취소되었습니다.",
+        status: "warning",
+        duration: 2000,
+      });
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -104,20 +113,28 @@ const MyProductCard = ({
     sellPrice = prompt(
       `변경할 가격을 입력해주세요.(ETH) (현재 가격: ${sellPrice}ETH)`
     );
-
-    const response = await saleProductContract.methods
-      .changePrice(productTokenId, web3.utils.toWei(sellPrice, "ether"))
-      .send({ from: account });
-
-    alert("가격 변경이 완료되었습니다.");
+    try {
+      setLoading(true);
+      const response = await saleProductContract.methods
+        .changePrice(productTokenId, web3.utils.toWei(sellPrice, "ether"))
+        .send({ from: account });
+      toast({
+        title: "거래 정보",
+        description: "가격 변경이 완료되었습니다.",
+        status: "warning",
+        duration: 2000,
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     if (!productTokenId) return;
 
     axios
-      // http://j6a507.p.ssafy.io:8080/
-      // /user/picture
       .get("http://j6a507.p.ssafy.io:8080/user/picture", {
         params: {
           id: productTokenId,
@@ -134,7 +151,14 @@ const MyProductCard = ({
     getDealHistories();
   }, [productTokenId]);
   return (
-    <Box textAlign="center" borderWidth="1px" boxShadow="dark-lg" w={250} p="5">
+    <Box
+      textAlign="center"
+      borderWidth="1px"
+      boxShadow="dark-lg"
+      w={250}
+      p="5"
+      m="5"
+    >
       <>
         <Image w={150} h={150} src={picture} alt="AnimalCard" m="auto" />
         <Text fontSize="sm" color="gray">
@@ -165,6 +189,9 @@ const MyProductCard = ({
               width="80%"
               m="auto"
               onClick={changePrice}
+              loadingText="가격 변경중"
+              spinnerPlacement="start"
+              isLoading={loading}
             >
               가격 변경
             </Button>
@@ -174,6 +201,9 @@ const MyProductCard = ({
               width="80%"
               m="auto"
               onClick={onClickSell}
+              loadingText="판매중"
+              spinnerPlacement="start"
+              isLoading={loading}
             >
               판매
             </Button>

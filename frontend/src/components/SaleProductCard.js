@@ -8,16 +8,12 @@ import {
   Modal,
   ModalOverlay,
   useDisclosure,
-  ModalFooter,
   ModalContent,
   ModalCloseButton,
   ModalBody,
   ModalHeader,
-  Heading,
-  Spacer,
   useToast,
 } from "@chakra-ui/react";
-import ReactLoading from "react-loading";
 import { mintProductContract, saleProductContract, web3 } from "../web3Config";
 import ModalContentBody from "./ModalContentBody";
 import axios from "axios";
@@ -68,11 +64,7 @@ const SaleProductCard = ({
   const onClickCancel = async () => {
     try {
       if (!account) return;
-
-      if (!window.confirm("판매를 취소하시겠습니까?")) {
-        return;
-      }
-
+      setLoading(true);
       await saleProductContract.methods
         .cancelSaleProduct(productTokenId)
         .send({ from: account });
@@ -81,6 +73,7 @@ const SaleProductCard = ({
     } catch (error) {
       console.error(error);
     }
+    setLoading(false);
   };
 
   const onClickBuy = async () => {
@@ -143,60 +136,62 @@ const SaleProductCard = ({
       boxShadow="dark-lg"
       w={250}
       p={5}
-      mb={5}
+      m={5}
     >
-      {loading ? (
-        <ReactLoading type="bubbles" height={300} width={150} />
-      ) : (
-        <>
-          <Image w={150} h={150} src={picture} alt="ProductCard" m="auto" />
-          <Text fontSize="sm" color="gray">
-            {brand}
-          </Text>
-          <Text fontSize="lg" fontWeight="extrabold">
-            {name}
-          </Text>
-          <Text d="inline-block">{web3.utils.fromWei(productPrice)} ETH</Text>
+      <>
+        <Image w={150} h={150} src={picture} alt="ProductCard" m="auto" />
+        <Text fontSize="sm" color="gray">
+          {brand}
+        </Text>
+        <Text fontSize="lg" fontWeight="extrabold">
+          {name}
+        </Text>
+        <Text d="inline-block">{web3.utils.fromWei(productPrice)} ETH</Text>
 
-          <Flex
-            justify="center"
-            m="auto"
-            mt="5"
+        <Flex
+          justify="center"
+          m="auto"
+          mt="5"
+          width="80%"
+          flexDirection="column"
+        >
+          <Button
+            onClick={onOpen}
+            colorScheme="whatsapp"
             width="80%"
-            flexDirection="column"
+            m="auto"
+            mb="3"
           >
+            상세정보
+          </Button>
+
+          {isBuyable ? (
             <Button
-              onClick={onOpen}
-              colorScheme="whatsapp"
+              colorScheme="red"
               width="80%"
               m="auto"
-              mb="3"
+              onClick={onClickCancel}
+              loadingText="판매 취소중"
+              spinnerPlacement="start"
+              isLoading={loading}
             >
-              상세정보
+              판매 취소
             </Button>
-
-            {isBuyable ? (
-              <Button
-                colorScheme="red"
-                width="80%"
-                m="auto"
-                onClick={onClickCancel}
-              >
-                판매 취소
-              </Button>
-            ) : (
-              <Button
-                colorScheme="purple"
-                width="80%"
-                m="auto"
-                onClick={onClickBuy}
-              >
-                구매
-              </Button>
-            )}
-          </Flex>
-        </>
-      )}
+          ) : (
+            <Button
+              colorScheme="purple"
+              width="80%"
+              m="auto"
+              onClick={onClickBuy}
+              loadingText="구매중"
+              spinnerPlacement="start"
+              isLoading={loading}
+            >
+              구매
+            </Button>
+          )}
+        </Flex>
+      </>
 
       <Modal
         isOpen={isOpen}

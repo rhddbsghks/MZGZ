@@ -53,7 +53,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Layout>
+        <Layout account={account}>
           <Routes>
             <Route path="/" element={<Main account={account} />}></Route>
             <Route
