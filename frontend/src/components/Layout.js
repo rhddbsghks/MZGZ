@@ -15,16 +15,16 @@ const Layout = ({ children, account }) => {
       >
         <GridItem colSpan={1} />
         <GridItem colSpan={1} justifySelf="center">
-          <Link to="/my-product">
+          <Link to="/">
             <Image src="/logo.png" alt="img" w={18} h={18}></Image>
           </Link>
         </GridItem>
         <GridItem colSpan={5}>
-          {account ? <Text><Link to="my-product"><strong>{account}</strong></Link>님 환영합니다.</Text> : <Text><strong>로그인 해주세요.</strong></Text>}
+          {account ? <Text><Link to="/my-product"><strong>{account}</strong></Link>님 환영합니다.</Text> : <Text><strong>로그인 해주세요.</strong></Text>}
         </GridItem>
         <GridItem colSpan={1} justifySelf="center">
           <Link
-            to="/"
+            to="/add-product"
             size="sm" colorScheme="blue"
             textColor="blue" fontWeight="bold" fontSize="large"
           >

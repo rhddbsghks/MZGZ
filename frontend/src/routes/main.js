@@ -1,156 +1,102 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Box,
-  Button,
-  Flex,
-  Input,
-  FormControl,
-  FormLabel,
-  Select,
-  Image,
-  Stack,
-  toast,
-} from "@chakra-ui/react";
-import { mintProductContract } from "../web3Config";
-import axios from "axios";
+import React from "react";
+import { Particles } from "react-tsparticles";
 
-import qs from "qs";
-axios.default.paramsSerializer = (params) => {
-  return qs.stringify(params);
-};
+const Main = () => {
+  const particlesInit = (main) => {
+    console.log(main);
 
-const api = axios.create({
-  baseURL: `/user/picture`,
-});
-
-const Main = ({ account }) => {
-  const [file, setFile] = useState("");
-  const [previewURL, setPreviewURL] = useState("");
-  const [preview, setPreview] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const productImage = useRef();
-  const productBrand = useRef();
-  const productName = useRef();
-  const productType = useRef();
-  const productSerial = useRef();
-
-  useEffect(() => {
-    if (file !== "") {
-      setPreview(
-        <Image src={previewURL} boxSize="sm" objectFit="cover" m="auto" />
-      );
-    }
-    return () => {};
-  }, [previewURL]);
-
-  const handleFileOnChange = (event) => {
-    //파일 불러오기
-    event.preventDefault();
-    let file = event.target.files[0];
-    let reader = new FileReader();
-
-    reader.onloadend = (e) => {
-      setFile(file);
-      setPreviewURL(reader.result);
-    };
-    if (file) reader.readAsDataURL(file);
+    // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
   };
 
-  const onClickMint = async () => {
-    try {
-      if (!account) return;
-      setLoading(true);
-      const response = await mintProductContract.methods
-        .mintProduct(
-          productBrand.current.value,
-          productName.current.value,
-          productType.current.value,
-          productSerial.current.value
-        )
-        .send({ from: account });
-      // post
-
-      const formData = new FormData();
-      formData.append("images", file);
-      formData.append("id", response.events.Transfer.returnValues.tokenId);
-
-      axios({
-        method: "post",
-        url: "http://j6a507.p.ssafy.io:8080/user/picture",
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      }).then((res) => {
-        console.log(res);
-      });
-      setTimeout(() => {
-        toast({
-          title: "상품 등록 정보",
-          description: "상품 등록이 완료되었습니다.",
-          status: "error",
-          duration: 2000,
-        });
-      }, 100);
-      setLoading(false);
-      window.location.reload(true);
-    } catch (error) {
-      console.log(error);
-    }
+  const particlesLoaded = (container) => {
+    console.log(container);
   };
 
   return (
-    <Flex
-      w="full"
-      justifyContent="center"
-      alignItems="center"
-      flexDirection="column"
-    >
-      <Box>
-        {file === "" ? <Box h="250px"></Box> : <Stack>{preview}</Stack>}
-
-        <FormControl isRequired>
-          <FormLabel htmlFor="brand-new">상품 이미지</FormLabel>
-          <Input
-            id="file"
-            type="file"
-            ref={productImage}
-            accept="image/jpg,image/png,image/jpeg,image/gif"
-            onChange={handleFileOnChange}
-          />
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel htmlFor="brand-new">브랜드 이름</FormLabel>
-          <Input id="brand-new" type="text" ref={productBrand} />
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel htmlFor="name-new">상품 이름</FormLabel>
-          <Input id="name-new" type="text" ref={productName} />
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel htmlFor="type-new">상품 타입</FormLabel>
-          <Select id="type-new" ref={productType}>
-            <option>상의</option>
-            <option>하의</option>
-            <option>신발</option>
-            <option>악세사리</option>
-            <option>기타</option>
-          </Select>
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel htmlFor="serialNum-new">시리얼 번호</FormLabel>
-          <Input id="serialNum-new" type="text" ref={productSerial} />
-        </FormControl>
-      </Box>
-      <Button
-        mt={4}
-        size="sm"
-        colorScheme="blue"
-        onClick={onClickMint}
-        isLoading={loading}
-      >
-        등록
-      </Button>
-    </Flex>
+    <>
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        loaded={particlesLoaded}
+        options={{
+          background: {
+            color: {
+              value: "#000332",
+            },
+          },
+          fpsLimit: 120,
+          interactivity: {
+            events: {
+              onClick: {
+                enable: true,
+                mode: "push",
+              },
+              onHover: {
+                enable: true,
+                mode: "repulse",
+              },
+              resize: true,
+            },
+            modes: {
+              bubble: {
+                distance: 400,
+                duration: 2,
+                opacity: 0.8,
+                size: 40,
+              },
+              push: {
+                quantity: 4,
+              },
+              repulse: {
+                distance: 200,
+                duration: 0.4,
+              },
+            },
+          },
+          particles: {
+            color: {
+              value: "#ffffff",
+            },
+            links: {
+              color: "#ffffff",
+              distance: 150,
+              enable: true,
+              opacity: 0.5,
+              width: 1,
+            },
+            collisions: {
+              enable: true,
+            },
+            move: {
+              direction: "none",
+              enable: true,
+              outMode: "bounce",
+              random: false,
+              speed: 6,
+              straight: false,
+            },
+            number: {
+              density: {
+                enable: true,
+                area: 800,
+              },
+              value: 80,
+            },
+            opacity: {
+              value: 0.5,
+            },
+            shape: {
+              type: "circle",
+            },
+            size: {
+              random: true,
+              value: 5,
+            },
+          },
+          detectRetina: true,
+        }}
+      />
+    </>
   );
 };
 
