@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { Stack, Flex, Text, GridItem, Grid, Image } from "@chakra-ui/react";
 
 const Layout = ({ children, account }) => {
+  
   return (
-    <Stack h="100vh" color="Background">
+    <Stack color="Background">
       <Grid
         templateColumns="repeat(12, 1fr)"
         bg="unset"
