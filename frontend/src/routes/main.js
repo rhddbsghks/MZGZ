@@ -81,7 +81,9 @@ const Main = () => {
                 처음 방문이시면,
               </Text>
               <Text sx={textminiStyles}>
-                MetaMask 익스텐션을 <br />
+                MetaMask 익스텐션을
+              </Text>
+              <Text sx={textminiStyles}>
                 설치해주세요
               </Text>
               <a
@@ -108,11 +110,11 @@ const Main = () => {
                 <strong>두번째</strong>
               </Text>
               <Text marginTop={8} sx={textminiStyles}>
-                {" "}
                 설치가 완료 되었다면,
               </Text>
-              <Text sx={textminiStyles}>디지털 지갑을 만들어 볼까요?</Text>
-              <br />
+              <Text sx={textminiStyles}>디지털 지갑을</Text>
+              <Text sx={textminiStyles}>만들어 볼까요?</Text>
+              
               <a
                 href="https://melonmilk.tistory.com/entry/%EB%A9%94%ED%83%80%EB%A7%88%EC%8A%A4%ED%81%AC-%EC%A7%80%EA%B0%91-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%8B%A0%EA%B7%9C-%EC%A7%80%EA%B0%91-%EC%83%9D%EC%84%B1-%EB%B0%A9%EB%B2%95"
                 target="_blank"
@@ -134,11 +136,13 @@ const Main = () => {
                 <strong>마지막</strong>
               </Text>
               <Text marginTop={8} sx={textminiStyles}>
-                {" "}
-                모두 마치셨다면,{" "}
+                모두 마치셨다면,
               </Text>
               <Text sx={textminiStyles}>
-                이제 진정한 명품을 <br /> 만날 시간입니다.
+                이제 진정한 명품을
+              </Text>
+              <Text sx={textminiStyles}>
+                만날 시간입니다.
               </Text>
               <Link to="/sale-product">
                 <Image w={150} src="/shopping-bag.png" />
