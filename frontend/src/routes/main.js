@@ -1,18 +1,9 @@
 import React from "react";
 import { Box, Flex, Grid, GridItem, Heading, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { keyframes } from "@emotion/react";
 
 
 const Main = () => {
-  const headerframe = keyframes`
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 200% 50%;
-  }
-  `;
 
   const innerBoxStyles = {
     display: "flex",
