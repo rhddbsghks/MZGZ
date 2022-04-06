@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Stack, Flex, Text, GridItem, Grid, Image } from "@chakra-ui/react";
 
 const Layout = ({ children, account }) => {
+  
   return (
     <Stack color="Background">
       <Grid
