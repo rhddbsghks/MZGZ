@@ -37,7 +37,6 @@ const MyProduct = ({ account }) => {
       });
 
       setProductArray(tempProductArray);
-      console.log(tempProductArray);
     } catch (error) {
       console.log(error);
     } finally {

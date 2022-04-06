@@ -79,7 +79,6 @@ const SaleProductCard = ({
   const onClickBuy = async () => {
     try {
       if (!account) return;
-      console.log(loading);
       setLoading(true);
       const response = await saleProductContract.methods
         .purchaseProduct(productTokenId)
@@ -125,7 +124,6 @@ const SaleProductCard = ({
       })
       .then((res) => {
         setPicture(res.data.data.picture_url);
-        console.log(res.data.data.picture_url);
       });
   }, [productTokenId]);
 

@@ -9,10 +9,8 @@ import AddProduct from "./routes/add-product";
 import Layout from "./components/Layout";
 import { useEffect, useState } from "react";
 
-
 function App() {
   const [account, setAccount] = useState("");
-  console.log(window.ethereum);
   const getAccount = async () => {
     try {
       if (window.ethereum) {
@@ -49,16 +47,24 @@ function App() {
     if (localStorage.getItem(account) !== "true") activateApprove();
   }, [account]);
 
-  useEffect(() => console.log(account), [account]);
   return (
     <>
       <BrowserRouter>
         <Layout account={account}>
           <Routes>
             <Route path="/" element={<Main account={account} />} />
-            <Route path="add-product" element={<AddProduct account={account} />} />
-            <Route path="my-product" element={<MyProduct account={account} />} />
-            <Route path="sale-product" element={<SaleProduct account={account} />} />
+            <Route
+              path="add-product"
+              element={<AddProduct account={account} />}
+            />
+            <Route
+              path="my-product"
+              element={<MyProduct account={account} />}
+            />
+            <Route
+              path="sale-product"
+              element={<SaleProduct account={account} />}
+            />
           </Routes>
         </Layout>
       </BrowserRouter>

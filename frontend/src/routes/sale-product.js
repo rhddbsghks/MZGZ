@@ -29,12 +29,6 @@ const SaleProduct = ({ account }) => {
   const allChecked = checkedItems.every(Boolean);
   const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
 
-  const top = useRef();
-  const bottom = useRef();
-  const shoes = useRef();
-  const acc = useRef();
-  const etc = useRef();
-
   const getOnSaleProducts = async () => {
     try {
       setLoading(true);
@@ -52,9 +46,6 @@ const SaleProduct = ({ account }) => {
         const product = await mintProductContract.methods
           .getProduct(productId)
           .call();
-
-        console.log("제품");
-        console.log(product);
 
         const productPrice = await saleProductContract.methods
           .getProductPrice(productId)
@@ -77,13 +68,6 @@ const SaleProduct = ({ account }) => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleChangeAll = (e) => {
-    const toggle = e.target.checked;
-    console.log(toggle);
-    top.current.checked = toggle;
-    console.log(top);
   };
 
   useEffect(() => {

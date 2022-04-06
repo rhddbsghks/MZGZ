@@ -23,7 +23,7 @@ const ModalContentBody = ({
       })
       .then((res) => {
         setPicture(res.data.data.picture_url);
-        console.log(res.data.data.picture_url);
+        // console.log(res.data.data.picture_url);
       });
   }, []);
   return (
