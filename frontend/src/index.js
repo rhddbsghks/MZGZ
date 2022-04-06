@@ -20,7 +20,7 @@ ReactDOM.render(
           },
           particles: {
             number: {
-              value: 80,
+              value: 20,
               density: {
                 enable: true,
                 value_area: 800,
@@ -30,7 +30,7 @@ ReactDOM.render(
               value: "#ff0000",
             },
             shape: {
-              type: "circle",
+              type: "image",
               stroke: {
                 width: 0,
                 color: "#000000",
@@ -39,7 +39,7 @@ ReactDOM.render(
                 nb_sides: 5,
               },
               image: {
-                src: "https://cdn.matteobruni.it/images/particles/github.svg",
+                src: "https://user-images.githubusercontent.com/70699213/161903715-45a6c685-fa60-43b1-b923-860c944508a4.png",
                 width: 100,
                 height: 100,
               },
@@ -55,7 +55,7 @@ ReactDOM.render(
               },
             },
             size: {
-              value: 5,
+              value: 20,
               random: true,
               anim: {
                 enable: true,
@@ -67,7 +67,7 @@ ReactDOM.render(
             line_linked: {
               enable: true,
               distance: 150,
-              color: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"],
+              color: ["unset"],
               opacity: 0.4,
               width: 1,
             },
