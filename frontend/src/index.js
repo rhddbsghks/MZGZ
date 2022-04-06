@@ -18,77 +18,117 @@ ReactDOM.render(
               value: "unset",
             },
           },
-          fpsLimit: 30,
-          detectRetina: true,
-          pauseOnBlur: true,
+          particles: {
+            number: {
+              value: 80,
+              density: {
+                enable: true,
+                value_area: 800,
+              },
+            },
+            color: {
+              value: "#ff0000",
+            },
+            shape: {
+              type: "circle",
+              stroke: {
+                width: 0,
+                color: "#000000",
+              },
+              polygon: {
+                nb_sides: 5,
+              },
+              image: {
+                src: "https://cdn.matteobruni.it/images/particles/github.svg",
+                width: 100,
+                height: 100,
+              },
+            },
+            opacity: {
+              value: 0.5,
+              random: true,
+              anim: {
+                enable: true,
+                speed: 3,
+                opacity_min: 0.1,
+                sync: false,
+              },
+            },
+            size: {
+              value: 5,
+              random: true,
+              anim: {
+                enable: true,
+                speed: 20,
+                size_min: 0.1,
+                sync: false,
+              },
+            },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"],
+              opacity: 0.4,
+              width: 1,
+            },
+            move: {
+              enable: true,
+              speed: 2,
+              direction: "none",
+              random: false,
+              straight: false,
+              out_mode: "out",
+              attract: {
+                enable: false,
+              },
+            },
+            twinkle: {
+              particles: {
+                enable: true,
+                color: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"],
+                opacity: 1,
+              },
+            },
+          },
           interactivity: {
+            detect_on: "window",
             events: {
-              onClick: {
+              onhover: {
+                enable: true,
+                mode: "repulse",
+              },
+              onclick: {
                 enable: true,
                 mode: "push",
-              },
-              onHover: {
-                enable: false,
-                mode: "repulse",
               },
               resize: true,
             },
             modes: {
+              grab: {
+                distance: 10,
+                line_linked: {
+                  opacity: 1,
+                },
+              },
               bubble: {
-                distance: 400,
+                distance: 20,
+                size: 2,
                 duration: 2,
                 opacity: 0.8,
-                size: 40,
-              },
-              push: {
-                quantity: 4,
+                speed: 3,
               },
               repulse: {
-                distance: 200,
-                duration: 0.4,
+                distance: 100,
+              },
+              push: {
+                particles_nb: 4,
+              },
+              remove: {
+                particles_nb: 2,
               },
             },
           },
-          particles: {
-            color: {
-              value: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"],
-            },
-            links: {
-              color: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"],
-              distance: 300,
-              enable: false,
-              opacity: 0.5,
-              width: 10,
-            },
-            collisions: {
-              enable: true,
-            },
-            move: {
-              direction: "none",
-              enable: true,
-              outMode: "bounce",
-              random: true,
-              speed: 2,
-              straight: true,
-            },
-            number: {
-              density: {
-                enable: true,
-                area: 1600,
-              },
-              value: 70,
-            },
-            opacity: {
-              value: 0.5,
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              random: true,
-              value: 5,
-            },
-          },
+          retina_detect: true,
         }}
       />
     </ChakraProvider>

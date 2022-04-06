@@ -36,7 +36,7 @@ const Main = () => {
         gap="16px"
         justifyContent="space-evenly"
         verticalAlign="center"
-        style={{ background: "rgb(155, 163, 172)" }}
+        // style={{ background: "rgb(155, 163, 172)" }}
       >
         <Box sx={innerBoxStyles}>
           <Text>
