@@ -79,7 +79,7 @@ const AddProduct = ({ account }) => {
         method: "post",
         url: "http://j6a507.p.ssafy.io:8080/user/picture",
         data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: { "Content-Type": "multipart/form-data; charset=UTF-8" },
       })
         .then((res) => {
           // console.log(res);

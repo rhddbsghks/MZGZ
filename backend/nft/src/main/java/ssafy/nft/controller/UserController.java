@@ -25,23 +25,21 @@ public class UserController {
     private final UserRepository userRepository;
 
     @PostMapping("/picture")
-    public ApiMessage<List<String>> registerPicture(@RequestParam("id")String id, @RequestPart("images") List<MultipartFile> images) throws IOException {
+    public ApiMessage<List<String>> registerPicture(@RequestParam("id")String id, @RequestPart("images") MultipartFile file) throws IOException {
+        System.out.println("post token id = " + id);
         List<String> urls = new ArrayList<>();
-        for(MultipartFile file : images){
-            String imageUrl = uploader.upload(file, "images");
-            urls.add(imageUrl);
-            User user = User.builder()
-                    .pictureUrl(imageUrl)
-                    .tokenId(id)
-                    .build();
-            userRepository.save(user);
-        }
+        String imageUrl = uploader.upload(file, "images");
+        urls.add(imageUrl);
+        User user = User.builder()
+                .pictureUrl(imageUrl)
+                .tokenId(id)
+                .build();
+        userRepository.save(user);
         return ApiMessage.RESPONSE(Status.OK,urls);
     }
 
     @GetMapping("/picture")
     public ApiMessage<UserApiResponse> getPicture(@RequestParam("id") String id){
-        System.out.println("id = " + id);
         Optional<User> byTokenId = userRepository.findByTokenId(id);
 
         User user = byTokenId.orElseThrow(RuntimeException::new);
