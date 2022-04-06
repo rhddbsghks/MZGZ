@@ -141,12 +141,11 @@ const MyProductCard = ({
         },
       })
       .then((res) => {
-        console.log("이미지 API 요청");
-        console.log(res);
+        // console.log("이미지 API 요청");
+        // console.log(res);
         setPicture(res.data.data.picture_url);
       });
 
-    console.log(productTokenId);
     checkOnSale();
     getDealHistories();
   }, [productTokenId]);
