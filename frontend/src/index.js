@@ -18,77 +18,117 @@ ReactDOM.render(
             value: "unset",
           },
         },
-        fpsLimit:30,
-        detectRetina: true,
-        pauseOnBlur: true,
-        interactivity: {
-          events: {
-            onClick: {
-              enable: true,
-              mode: "push",
-            },
-            onHover: {
-              enable: true,
-              mode: "repulse",
-            },
-            resize: true,
-          },
-          modes: {
-            bubble: {
-              distance: 400,
-              duration: 2,
-              opacity: 0.8,
-              size: 40,
-            },
-            push: {
-              quantity: 4,
-            },
-            repulse: {
-              distance: 200,
-              duration: 0.4,
-            },
-          },
-        },
         particles: {
-          color: {
-            value:["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"],
-          },
-          links: {
-            color: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"],
-            distance: 150,
-            enable: true,
-            opacity: 0.5,
-            width: 1,
-          },
-          collisions: {
-            enable: true,
-          },
-          move: {
-            direction: "none",
-            enable: true,
-            outMode: "bounce",
-            random: true,
-            speed: 4,
-            straight: true,
-          },
           number: {
+            value: 80,
             density: {
               enable: true,
-              area: 800,
-            },
-            value: 80,
+              value_area: 800
+            }
           },
-          opacity: {
-            value: 0.5,
+          color: {
+            value: "#ff0000"
           },
           shape: {
             type: "circle",
+            stroke: {
+              width: 0,
+              color: "#000000"
+            },
+            polygon: {
+              nb_sides: 5
+            },
+            image: {
+              src: "https://cdn.matteobruni.it/images/particles/github.svg",
+              width: 100,
+              height: 100
+            }
+          },
+          opacity: {
+            value: 0.5,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 3,
+              opacity_min: 0.1,
+              sync: false
+            }
           },
           size: {
-            random: true,
             value: 5,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 20,
+              size_min: 0.1,
+              sync: false
+            }
           },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"],
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: false,
+            straight: false,
+            out_mode: "out",
+            attract: {
+              enable: false,
+            }
+          },
+          twinkle: {
+            particles: {
+              enable: true,
+              color: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"],
+              opacity: 1
+            },
+          }
         },
+        interactivity: {
+          detect_on: "window",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "repulse"
+            },
+            onclick: {
+              enable: true,
+              mode: "push"
+            },
+            resize: true
+          },
+          modes: {
+            grab: {
+              distance: 10,
+              line_linked: {
+                opacity: 1
+              }
+            },
+            bubble: {
+              distance: 20,
+              size: 2,
+              duration: 2,
+              opacity: 0.8,
+              speed: 3
+            },
+            repulse: {
+              distance: 100
+            },
+            push: {
+              particles_nb: 4
+            },
+            remove: {
+              particles_nb: 2
+            }
+          }
+        },
+        retina_detect: true,
       }}
     />
     </ChakraProvider>
