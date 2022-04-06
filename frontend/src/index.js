@@ -30,7 +30,7 @@ ReactDOM.render(
             value: "#ff0000"
           },
           shape: {
-            type: "circle",
+            type: "image",
             stroke: {
               width: 0,
               color: "#000000"
@@ -39,9 +39,9 @@ ReactDOM.render(
               nb_sides: 5
             },
             image: {
-              src: "https://cdn.matteobruni.it/images/particles/github.svg",
-              width: 100,
-              height: 100
+              src: "https://commons.wikimedia.org/wiki/File:Sakura.svg#/media/File:Sakura.svg",
+              width: 500,
+              height: 500,
             }
           },
           opacity: {
@@ -67,7 +67,7 @@ ReactDOM.render(
           line_linked: {
             enable: true,
             distance: 150,
-            color: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"],
+            color: "unset",
             opacity: 0.4,
             width: 1
           },
