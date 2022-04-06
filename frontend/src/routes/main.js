@@ -1,8 +1,10 @@
 import React from "react";
-import { Box, Flex, Grid, GridItem, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Heading, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
+
 const Main = () => {
+
   const innerBoxStyles = {
     display: "flex",
     alignItems: "center",
@@ -13,6 +15,16 @@ const Main = () => {
     textShadow: "0 0 10px blue",
     fontWeight: "bold",
     fontSize: "20px",
+  };
+  const HeaderStyles = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    boxSize: "full",
+    color: "white",
+    textShadow: "0 0 20px #1e4b94",
+    fontWeight: "bold",
   };
   const textStyles = {
     color: "skyblue",
@@ -36,8 +48,10 @@ const Main = () => {
         gap="16px"
         justifyContent="space-evenly"
         verticalAlign="center"
-        // style={{ background: "rgb(155, 163, 172)" }}
       >
+        <Box sx={HeaderStyles} marginTop={-100} marginBottom={5}>
+          <Heading fontSize="6xl"><strong>명 진 가 Z</strong></Heading>
+        </Box>
         <Box sx={innerBoxStyles}>
           <Text>
             <strong>
