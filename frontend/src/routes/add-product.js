@@ -80,9 +80,11 @@ const AddProduct = ({ account }) => {
         url: "http://j6a507.p.ssafy.io:8080/user/picture",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
-      }).then((res) => {
-        console.log(res);
-      });
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => console.log(err));
       setTimeout(() => {
         toast({
           title: "상품 등록 정보",
