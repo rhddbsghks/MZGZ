@@ -1,4 +1,15 @@
 spring:
+  # https://programmerah.com/multipartexception-failed-to-parse-multipart-servlet-request%EF%BC%9B-nested-exception-is-java-lang-runtime-42626/
+  # multipart 관련 에러
+  servlet:
+    multipart:
+      location: ./data/tmp
+
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
   profiles:
     include:
       - aws
@@ -27,7 +38,15 @@ spring:
 
 server:
   port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  tomcat:
+    uri-encoding: UTF-8
 
 logging:
   level:
     org.hibernate.SQL: debug
+

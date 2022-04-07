@@ -736,11 +736,11 @@
 			]
 		},
 		"MintProduct.sol": {
-			"keccak256": "0xd5017184dea69fbbb68defcf3f61cd24552da8b8cf3bb102b5c837d5f877be93",
+			"keccak256": "0x7075c183478d936278a4c4d4825fb532541563af693f46d4c618c150f2877caf",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2f037187bd730fefd7644a696d47b6d853c156760322fd226b2ba3c447a739ab",
-				"dweb:/ipfs/QmdFx5gWWeJn5HVBbNN1fTDLuX4hdA1LEnozbo1AMSMA62"
+				"bzz-raw://7e026c7e8e300a79b3197cae1ea58a2f0208ee4b645a756d5d41f89e744fc3a1",
+				"dweb:/ipfs/QmRpPoLJ5HFMzCTDeWuwEjmx2EqpKX6NGHn1j5QC2RvZzX"
 			]
 		}
 	},
