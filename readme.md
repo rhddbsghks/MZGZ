@@ -46,7 +46,7 @@ npm run start
 "web3-utils": "^1.7.1"
 ```
 
-### backend - spring
+## backend - spring
 
 * java
     * java 11
@@ -73,3 +73,12 @@ cd backend
 ./gradlew build
 java -jar [snapshot.jar]
 ```
+
+## 팀원
+
+* 강동석
+* 공윤환
+* 정언용
+* 임형준
+
+## 회고
