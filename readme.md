@@ -76,10 +76,10 @@ java -jar [snapshot.jar]
 
 ## 팀원
 
-* 강동석
-* 공윤환
-* 정언용
-* 임형준
+* [강동석](https://github.com/Kang-Dongseok)
+* [공윤환](https://github.com/rhddbsghks)
+* [정언용](https://github.com/Eonyong)
+* [임형준](https://github.com/camel-man-ims)
 
 ## 회고
 
