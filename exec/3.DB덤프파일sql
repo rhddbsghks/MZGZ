@@ -1,0 +1,61 @@
+-- MySQL dump 10.13  Distrib 8.0.26, for macos11 (x86_64)
+--
+-- Host: spring-practice.ctvzqmwyjimr.ap-northeast-2.rds.amazonaws.com    Database: mzgz
+-- ------------------------------------------------------
+-- Server version	8.0.23
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+SET @MYSQLDUMP_TEMP_LOG_BIN = @@SESSION.SQL_LOG_BIN;
+SET @@SESSION.SQL_LOG_BIN= 0;
+
+--
+-- GTID state at the beginning of the backup 
+--
+
+SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '';
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user` (
+  `id` bigint NOT NULL,
+  `picture_url` varchar(255) DEFAULT NULL,
+  `token_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (61,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/3ba72fd4-ec8f-44d5-b277-80e253a85883double.jpg','1'),(62,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/f958d48f-69fc-4497-9413-d1a37bffd2db%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-04-05%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2011.22.17.png','1234'),(64,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/124e9814-709d-48cc-ac0b-4d7eb09ecd80%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-04-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%202.37.25.png','9999'),(65,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/4d647476-5fbd-45a4-bbd0-0c5aeb4aebff%E1%84%86%E1%85%A2%E1%86%A8%E1%84%87%E1%85%AE%E1%86%A8%20%E1%84%8F%E1%85%B5.png','99991'),(66,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/f67721e1-2b01-4f2a-b242-9790fb86dc91%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-04-05%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2011.22.17.png','3'),(67,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/8cd03c4e-db77-42d6-bb6f-fc7ddf3840e4%E1%84%89%E1%85%A5%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%8B%E1%85%B5%E1%84%80%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7.jpg','6'),(68,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/8f842fad-87bf-4e38-a461-29a2388820a5%E1%84%86%E1%85%A2%E1%86%A8%E1%84%87%E1%85%AE%E1%86%A8%20%E1%84%8F%E1%85%B5.png','9999132'),(69,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/99b65562-752e-4f3f-88c6-2fb987fd8906%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-03-19%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%209.12.59.png','8'),(70,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/704937f4-f814-40ff-93a9-3c5b5369dbb1%E1%84%89%E1%85%A5%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%8B%E1%85%B5%E1%84%80%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7.jpg','99991321'),(71,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/353d535d-f96b-402e-ad48-58b42576f08a%E1%84%89%E1%85%A5%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%8B%E1%85%B5%E1%84%80%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7.jpg','11'),(72,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/732a9334-41c7-42e7-be91-4fed0980f734%E1%84%89%E1%85%A5%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%8B%E1%85%B5%E1%84%80%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7.jpg','99991321'),(73,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/d9e545b8-9123-450a-b0d8-36055922e018%E1%84%89%E1%85%A5%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%8B%E1%85%B5%E1%84%80%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7.jpg','99991321'),(74,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/a91dbb35-c60c-4b41-a756-4fe5ea8d2ed7%E1%84%89%E1%85%A5%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%8B%E1%85%B5%E1%84%80%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7.jpg','9999132112'),(75,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/30d4f4cc-8a2b-4ac5-ba7a-0b86a3f97875camel.jpeg','16'),(76,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/b24d002f-9fe3-482c-b193-33c9f9f197cdcamel%20%E1%84%87%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%E1%84%87%E1%85%A9%E1%86%AB.jpeg','17'),(77,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/552f5c5a-86ce-4d5b-86fe-1490bd618020seo.jpeg','21'),(78,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/d7c0d238-c8d9-4808-b67b-2e0aae06b0b7%E1%84%89%E1%85%A5%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%8B%E1%85%B5%E1%84%80%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7.jpg','999913211232'),(79,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/9d9279e1-b934-4c45-9381-34f2b10a1f1e%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%92%E1%85%A7%E1%86%BC%E1%84%8C%E1%85%AE%E1%86%AB.jpg','26'),(80,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/94dcdade-4b4b-4d7e-b2b7-0c9d1a34646d%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-04-05%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2011.22.17.png','28'),(81,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/f5ae63e5-4bbe-4458-9631-6b4bf53fe92ashanel.jpeg','32'),(82,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/a53734eb-1669-41c6-a842-84a6e4e6ce97shanel.jpeg','33'),(83,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/75ce1584-4560-4edd-ba3b-9f0b35a61494double.jpg','34'),(84,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/a541f6f0-c1f6-48f3-bd6c-9d1a98541779DIOR.png','35'),(85,'https://postmission.s3.ap-northeast-2.amazonaws.com/images/dd71ae1d-9a36-418e-8069-d2be88d0858c%ED%8C%8C%EC%9A%B0%EC%B9%98.png','36'),(86,'https://user-images.githubusercontent.com/49037411/162102743-26e55aaa-37b3-4e31-8088-f35822e18d44.jpg','37'),(87,'https://user-images.githubusercontent.com/49037411/162103286-74b145b1-c531-4dd5-b5cb-d6fbd8b60197.png','38'),(88,'https://user-images.githubusercontent.com/49037411/162105816-4084480f-1b3f-402c-b01d-78838c586d5f.png','39'),(89,'https://user-images.githubusercontent.com/49037411/162143311-0eb21937-5971-4781-9824-bdec92030e15.png','42');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-04-08 10:03:39
