@@ -84,9 +84,6 @@ java -jar [snapshot.jar]
 ## 회고
 
 * [형준](./feedback/형준.md)
-
 * [윤환](./feedback/윤환.md)
-
 * [동석](./feedback/동석.md)
-
 * [언용](./feedback/언용.md)
