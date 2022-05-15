@@ -81,7 +81,7 @@ java -jar [snapshot.jar]
 - [프로젝트 버전](exec/1.프로젝트%20버전.md)
 - [발표 자료](exec/서울_5반_A507_발표자료.pdf)
 - [시연 시나리오](exec/4.시연%20시나리오.md)
-- [UCC](https://youtu.be/fDAJ249o7Vg)
+- [UCC](https://youtu.be/vOnda_VxR9I)
 
 ## 팀원
 
